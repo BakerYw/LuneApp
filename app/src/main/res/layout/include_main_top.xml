@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:background="?attr/colorPrimary"
+    android:theme="@style/AppTheme.AppBarOverlay"
+    app:layout_scrollFlags="scroll|enterAlways"
+    app:popupTheme="@style/AppTheme.PopupOverlay" >
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_main_icon"
+        android:layout_marginLeft="@dimen/dp_90"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_scan"
+        android:text="扫一扫"
+        android:drawablePadding="@dimen/dp_7"
+        android:layout_marginRight="@dimen/dp_90"
+        android:layout_gravity="right"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/dp_7"
+        android:drawableTop="@drawable/ic_user"
+        android:layout_marginRight="@dimen/dp_35"
+        android:text="登录/注册"
+        android:layout_gravity="right"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableTop="@drawable/ic_update"
+        android:text="系统更新"
+        android:drawablePadding="@dimen/dp_7"
+        android:layout_marginRight="@dimen/dp_35"
+        android:layout_gravity="right"
+        android:textColor="#ffffffff"
+        android:textSize="16sp" />
+</androidx.appcompat.widget.Toolbar>

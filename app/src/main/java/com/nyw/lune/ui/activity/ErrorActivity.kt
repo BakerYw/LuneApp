@@ -31,6 +31,7 @@ class ErrorActivity : BaseActivity<BaseViewModel, ActivityErrorBinding>() {
 
     override fun initView(savedInstanceState: Bundle?)  {
         toolbar.init("发生错误")
+        StatusBarUtil.setLightMode(this)
         supportActionBar?.setBackgroundDrawable(ColorDrawable(SettingUtil.getColor(this)))
         StatusBarUtil.setColor(this, SettingUtil.getColor(this), 0)
         val config = CustomActivityOnCrash.getConfigFromIntent(intent)

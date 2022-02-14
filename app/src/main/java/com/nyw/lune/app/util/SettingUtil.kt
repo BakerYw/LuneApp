@@ -27,14 +27,13 @@ object SettingUtil {
      */
     fun getColor(context: Context): Int {
         val setting = PreferenceManager.getDefaultSharedPreferences(context)
-        val defaultColor = ContextCompat.getColor(context, R.color.colorPrimary)
+        val defaultColor = ContextCompat.getColor(context, android.R.color.transparent)
         val color = setting.getInt("color", defaultColor)
         return if (color != 0 && Color.alpha(color) != 255) {
             defaultColor
         } else {
             color
         }
-
     }
 
     /**

@@ -14,9 +14,9 @@
 
         <ImageView
             android:id="@+id/iv_top"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="center"
+            android:layout_width="@dimen/dp_56"
+            android:layout_height="@dimen/dp_61"
+            android:scaleType="fitXY"
             android:layout_gravity="center_horizontal"/>
 
         <TextView
@@ -27,7 +27,7 @@
             android:gravity="center_horizontal"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_26" />
+            android:textSize="@dimen/sp_12" />
     </LinearLayout>
 
     <LinearLayout
@@ -44,14 +44,14 @@
             android:gravity="center_vertical"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textSize="@dimen/sp_26"
+            android:textSize="@dimen/sp_12"
             tools:text="采购" />
 
         <ImageView
             android:id="@+id/iv_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/dp_28"
+            android:layout_height="@dimen/dp_28"
             android:gravity="center_vertical"
-            android:scaleType="center" />
+            android:scaleType="fitXY" />
     </LinearLayout>
 </LinearLayout>

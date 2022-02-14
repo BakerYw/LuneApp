@@ -6,7 +6,6 @@ import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -14,7 +13,7 @@ import androidx.annotation.Nullable;
 import com.nyw.lune.R;
 
 
-public class EntranceView extends RelativeLayout {
+public class EntranceView extends LinearLayout{
 
     private Context context;
     private Boolean isTop;
@@ -26,6 +25,9 @@ public class EntranceView extends RelativeLayout {
     private ImageView imageView;
     private LinearLayout topLayout;
     private LinearLayout rightLayout;
+    private int height = 0;
+    private int width = 0;
+
 
     public EntranceView(Context context) {
         this(context, null);
@@ -51,6 +53,8 @@ public class EntranceView extends RelativeLayout {
         textContent = array.getString(R.styleable.EntranceView_lune_text_content);
         isTop = array.getBoolean(R.styleable.EntranceView_lune_is_top, false);
         padding = array.getDimensionPixelSize(R.styleable.EntranceView_lune_padding, 0);
+        width = array.getDimensionPixelSize(R.styleable.EntranceView_lune_drawable_width, 0);
+        height = array.getDimensionPixelSize(R.styleable.EntranceView_lune_drawable_height, 0);
         backgroundColor = array.getColor(R.styleable.EntranceView_lune_bg, 0);
         drawableResourceId = array.getResourceId(R.styleable.EntranceView_lune_drawable, 0);
         array.recycle();
@@ -67,12 +71,20 @@ public class EntranceView extends RelativeLayout {
             textView = findViewById(R.id.tv_top);
             imageView = findViewById(R.id.iv_top);
             textView.setPadding(0, (int) padding, 0, 0);
+            LayoutParams para = (LayoutParams) imageView.getLayoutParams();
+            para.height = width;
+            para.width = height;
+            imageView.setLayoutParams(para);
         } else {
             rightLayout.setVisibility(VISIBLE);
             topLayout.setVisibility(GONE);
             textView = findViewById(R.id.tv_right);
             imageView = findViewById(R.id.iv_right);
             textView.setPadding(0, 0, (int) padding, 0);
+            LayoutParams para = (LayoutParams) imageView.getLayoutParams();
+            para.height = width;
+            para.width = height;
+            imageView.setLayoutParams(para);
         }
         textView.setText(textContent);
         imageView.setBackgroundResource(drawableResourceId);

@@ -3,8 +3,16 @@
     <declare-styleable name="EntranceView">
         <attr name="lune_text_content" format="string" />
         <attr name="lune_is_top" format="boolean" />
+        <attr name="lune_drawable_width" format="dimension" />
+        <attr name="lune_drawable_height" format="dimension" />
         <attr name="lune_drawable" format="reference" />
         <attr name="lune_bg" format="reference|color" />
         <attr name="lune_padding" format="dimension" />
+    </declare-styleable>
+
+    <!--************ Loading ***********-->
+    <declare-styleable name="LineRotateLoadingView">
+        <attr name="loading_view_size" format="dimension" />
+        <attr name="android:color" />
     </declare-styleable>
 </resources>

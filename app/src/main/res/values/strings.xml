@@ -1,4 +1,13 @@
 <resources>
     <string name="app_name">单词狗</string>
     <string name="error_occurred">不好意思App翻车了。\n请拿已复制好的错误日志去啪啪啪得打作者的脸</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="text_tip">adj.黑色的；黑人的；邪恶的 &#x000A;
+        n.黑色；黑人；黑颜料 &#x000A;
+        vt.使变黑；把鞋油等涂在…上；把（眼眶）打成青肿 &#x000A;
+        vi.变黑 &#x000A;
+        n.(Black)人名；(英、西)布莱克；(德、葡、捷)布拉克&#x000A;
+        adj.黑色的；黑人的；邪恶的&#x000A;
+        n.黑色；黑人；黑颜料</string>
 </resources>

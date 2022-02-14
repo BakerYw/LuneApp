@@ -3,36 +3,38 @@ package com.nyw.lune.app.util
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
+import com.nyw.lib_base.callback.livedata.event.EventLiveData
+import com.nyw.lune.data.model.bean.UserInfo
 import com.tencent.mmkv.MMKV
 
 object CacheUtil {
-//    /**
-//     * 获取保存的账户信息
-//     */
-//    fun getUser(): UserInfo? {
-//        val kv = MMKV.mmkvWithID("app")
-//        val userStr = kv.decodeString("user")
-//        return if (TextUtils.isEmpty(userStr)) {
-//           null
-//        } else {
-//            Gson().fromJson(userStr, UserInfo::class.java)
-//        }
-//    }
+    /**
+     * 获取保存的账户信息
+     */
+    fun getUser(): UserInfo? {
+        val kv = MMKV.mmkvWithID("app")
+        val userStr = kv.decodeString("user")
+        return if (TextUtils.isEmpty(userStr)) {
+            null
+        } else {
+            Gson().fromJson(userStr, UserInfo::class.java)
+        }
+    }
 
-//    /**
-//     * 设置账户信息
-//     */
-//    fun setUser(userResponse: UserInfo?) {
-//        val kv = MMKV.mmkvWithID("app")
-//        if (userResponse == null) {
-//            kv.encode("user", "")
-//            setIsLogin(false)
-//        } else {
-//            kv.encode("user", Gson().toJson(userResponse))
-//            setIsLogin(true)
-//        }
-//
-//    }
+    /**
+     * 设置账户信息
+     */
+    fun setUser(userResponse: UserInfo?) {
+        val kv = MMKV.mmkvWithID("app")
+        if (userResponse == null) {
+            kv.encode("user", "")
+            setIsLogin(false)
+        } else {
+            kv.encode("user", Gson().toJson(userResponse))
+            setIsLogin(true)
+        }
+
+    }
 
     /**
      * 是否已经登录
@@ -50,6 +52,32 @@ object CacheUtil {
         kv.encode("login", isLogin)
     }
 
+
+    /**
+     * 设置主题风格
+     * 1.白色的
+     * 2.主题色的
+     */
+    fun getTheme(): Boolean{
+        val kv = MMKV.mmkvWithID("app")
+        return kv.decodeBool("white", true)
+    }
+
+
+    fun setTheme(flag: Boolean) {
+        val kv = MMKV.mmkvWithID("app")
+        kv.encode("white", flag)
+    }
+
+
+
+
+
+
+
+
+
+
     /**
      * 是否是第一次登陆
      */
@@ -64,7 +92,6 @@ object CacheUtil {
         val kv = MMKV.mmkvWithID("app")
         return kv.encode("first", first)
     }
-
     /**
      * 首页是否开启获取指定文章
      */
@@ -96,4 +123,8 @@ object CacheUtil {
         val kv = MMKV.mmkvWithID("cache")
         kv.encode("history",searchResponseStr)
     }
+
+
+
+
 }

@@ -6,16 +6,13 @@ import android.text.TextUtils
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.WhichButton
-import com.afollestad.materialdialogs.actions.getActionButton
-import com.afollestad.materialdialogs.lifecycle.lifecycleOwner
 import com.blankj.utilcode.util.ToastUtils
+import com.kongzue.dialogx.dialogs.MessageDialog
 import com.nyw.lune.app.util.CacheUtil
-import com.nyw.lune.app.util.SettingUtil
 import java.io.BufferedReader
 import java.io.FileReader
 import java.io.IOException
+
 
 /**
  * @param message 显示对话框的内容 必填项
@@ -31,26 +28,21 @@ fun AppCompatActivity.showMessage(
     title: String = "温馨提示",
     positiveButtonText: String = "确定",
     positiveAction: () -> Unit = {},
-    negativeButtonText: String = "",
+    negativeButtonText: String = "取消",
     negativeAction: () -> Unit = {}
 ) {
-    MaterialDialog(this)
-        .cancelable(true)
-        .lifecycleOwner(this)
-        .show {
-            title(text = title)
-            message(text = message)
-            positiveButton(text = positiveButtonText) {
-                positiveAction.invoke()
-            }
-            if (negativeButtonText.isNotEmpty()) {
-                negativeButton(text = negativeButtonText) {
-                    negativeAction.invoke()
-                }
-            }
-            getActionButton(WhichButton.POSITIVE).updateTextColor(SettingUtil.getColor(this@showMessage))
-            getActionButton(WhichButton.NEGATIVE).updateTextColor(SettingUtil.getColor(this@showMessage))
-        }
+    MessageDialog.build()
+        .setTitle(title)
+        .setMessage(message)
+        .setOkButton(positiveButtonText
+        ) { _, _ ->
+            positiveAction.invoke()
+            false
+        }.setCancelButton(negativeButtonText
+        ) { _, _ ->
+            negativeAction.invoke()
+            false
+        }.show()
 }
 
 /**
@@ -70,23 +62,18 @@ fun Fragment.showMessage(
     negativeAction: () -> Unit = {}
 ) {
     activity?.let {
-        MaterialDialog(it)
-            .cancelable(true)
-            .lifecycleOwner(viewLifecycleOwner)
-            .show {
-                title(text = title)
-                message(text = message)
-                positiveButton(text = positiveButtonText) {
-                    positiveAction.invoke()
-                }
-                if (negativeButtonText.isNotEmpty()) {
-                    negativeButton(text = negativeButtonText) {
-                        negativeAction.invoke()
-                    }
-                }
-                getActionButton(WhichButton.POSITIVE).updateTextColor(SettingUtil.getColor(it))
-                getActionButton(WhichButton.NEGATIVE).updateTextColor(SettingUtil.getColor(it))
-            }
+        MessageDialog.build()
+            .setTitle(title)
+            .setMessage(message)
+            .setOkButton(positiveButtonText
+            ) { _, _ ->
+                positiveAction.invoke()
+                false
+            }.setCancelButton(negativeButtonText
+            ) { _, _ ->
+                negativeAction.invoke()
+                false
+            }.show()
     }
 }
 

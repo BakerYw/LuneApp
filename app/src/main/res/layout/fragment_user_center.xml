@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.fragment.UserCenterFragment">
+
+        <include layout="@layout/include_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:padding="@dimen/dp_14">
+
+            <ImageView
+                android:id="@+id/header_image"
+                android:layout_width="@dimen/dp_56"
+                android:layout_height="@dimen/dp_56"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_head_image"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/header_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="佳佳"
+                android:textColor="@color/colorBlack333"
+                android:textSize="@dimen/sp_14"
+                app:layout_constraintLeft_toRightOf="@id/header_image"
+                app:layout_constraintTop_toTopOf="@id/header_image" />
+
+            <TextView
+                android:id="@+id/header_grade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="一年级"
+                android:textColor="@color/colorBlack999"
+                android:textSize="@dimen/sp_9"
+                app:layout_constraintLeft_toRightOf="@id/header_image"
+                app:layout_constraintTop_toBottomOf="@+id/header_name" />
+
+            <TextView
+                android:id="@+id/header_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginTop="@dimen/dp_5"
+                android:text="10001  宁波校区"
+                android:textColor="@color/colorBlack999"
+                android:textSize="@dimen/sp_9"
+                app:layout_constraintLeft_toRightOf="@id/header_grade"
+                app:layout_constraintTop_toBottomOf="@+id/header_name" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/button_selector"
+                android:paddingLeft="@dimen/dp_13"
+                android:paddingTop="@dimen/dp_6"
+                android:paddingRight="@dimen/dp_13"
+                android:paddingBottom="@dimen/dp_6"
+                android:text="编辑资料"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_9"
+                app:layout_constraintBottom_toBottomOf="@id/header_image"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="@id/header_image" />
+
+            <LinearLayout
+                android:id="@+id/center_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_68"
+                android:layout_marginTop="@dimen/dp_14"
+                android:background="@drawable/ic_mine_top_bg"
+                android:orientation="horizontal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/header_image">
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="词库量"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="5"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_19" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="词汇量"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="500"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_19" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp_0"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="待学习"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_8" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="8"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_19" />
+                </LinearLayout>
+            </LinearLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:overScrollMode="never"
+                android:layout_marginTop="@dimen/dp_14"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/center_layout"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="click"
+            type="com.nyw.lune.ui.fragment.MainFragment.ProxyClick" />
+
+        <variable
+            name="viewmodel"
+            type="com.nyw.lune.viewmodel.state.MainViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        tools:context=".ui.fragment.MainFragment">
+
+        <RelativeLayout
+            android:id="@+id/top_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_42"
+            android:layout_marginTop="@dimen/dp_27"
+            android:layout_marginRight="@dimen/dp_42"
+            android:background="?attr/colorPrimary"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="@dimen/dp_83"
+                android:layout_height="@dimen/dp_28"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/ic_main_icon" />
+
+            <LinearLayout
+                android:id="@+id/scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:gravity="center"
+                android:onClick="@{()-> click.goScan()}"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dp_13"
+                    android:layout_height="@dimen/dp_13"
+                    android:src="@drawable/ic_scan"
+                    android:scaleType="fitXY"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="扫一扫"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_8" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/scan"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_16"
+                android:gravity="center"
+                android:onClick="@{()-> click.goLogin()}"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dp_13"
+                    android:layout_height="@dimen/dp_13"
+                    android:src="@drawable/ic_user"
+                    android:scaleType="fitXY"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="登录/注册"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_8" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/updata"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toLeftOf="@+id/login"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/dp_16"
+                android:gravity="center"
+                android:onClick="@{()-> click.update()}"
+                android:orientation="vertical">
+                <ImageView
+                    android:layout_width="@dimen/dp_13"
+                    android:layout_height="@dimen/dp_13"
+                    android:src="@drawable/ic_update"
+                    android:scaleType="fitXY"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="系统更新"
+                    android:layout_marginTop="@dimen/dp_4"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_8" />
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_notice"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_42"
+            android:layout_marginTop="@dimen/dp_19"
+            android:layout_marginRight="@dimen/dp_42"
+            android:paddingLeft="@dimen/dp_14"
+            android:paddingRight="@dimen/dp_14"
+            android:background="@drawable/shape_9a90ff_31"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/top_layout">
+            <ImageView
+                android:layout_width="@dimen/dp_10"
+                android:layout_height="@dimen/dp_10"
+                android:src="@drawable/ic_notice"
+                android:scaleType="fitXY"
+                />
+            <TextView
+                android:id="@+id/tv_notice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center|left"
+                android:padding="@dimen/dp_6"
+                android:singleLine="true"
+                android:text="教辅老师给你分配新的学习任务啦，点击查看详情"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_9" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_42"
+            android:layout_marginTop="@dimen/dp_20"
+            android:layout_marginRight="@dimen/dp_42"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/recycler_main"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_notice">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_142"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="@dimen/dp_94"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+                    <!--查单词-->
+                    <com.nyw.lune.app.weight.EntranceView
+                        android:id="@+id/tv_search"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:onClick="@{()-> click.goSearch()}"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:lune_bg="#E07CFF"
+                        app:lune_drawable="@drawable/ic_search"
+                        app:lune_drawable_height="@dimen/dp_28"
+                        app:lune_drawable_width="@dimen/dp_28"
+                        app:lune_is_top="false"
+                        app:lune_padding="@dimen/dp_9"
+                        app:lune_text_content="查单词" />
+                    <!--一起学-->
+                    <com.nyw.lune.app.weight.EntranceView
+                        android:id="@+id/tv_study"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_marginTop="@dimen/dp_5"
+                        android:layout_weight="1"
+                        android:onClick="@{()-> click.goStudyWith()}"
+                        app:layout_constraintLeft_toLeftOf="@+id/tv_search"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_search"
+                        app:lune_bg="#32C0FA"
+                        app:lune_drawable="@drawable/ic_study"
+                        app:lune_drawable_height="@dimen/dp_28"
+                        app:lune_drawable_width="@dimen/dp_28"
+                        app:lune_is_top="false"
+                        app:lune_padding="@dimen/dp_9"
+                        app:lune_text_content="一起学" />
+                </LinearLayout>
+
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_remember"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:onClick="@{()-> click.goRememberWord()}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_search"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_search"
+                    app:lune_bg="#FB8A7A"
+                    app:lune_drawable="@drawable/ic_remember"
+                    app:lune_drawable_height="@dimen/dp_61"
+                    app:lune_drawable_width="@dimen/dp_56"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_22"
+                    app:lune_text_content="记单词" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_142"
+                android:layout_marginTop="@dimen/dp_5"
+                android:orientation="horizontal">
+                <!--抗遗忘-->
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_forget"
+                    android:layout_width="@dimen/dp_192"
+                    android:layout_height="match_parent"
+                    android:onClick="@{()-> click.goForgetWord()}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_search"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_study"
+                    app:lune_bg="#8077F6"
+                    app:lune_drawable="@drawable/ic_forget"
+                    app:lune_drawable_height="@dimen/dp_50"
+                    app:lune_drawable_width="@dimen/dp_42"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_32"
+                    app:lune_text_content="抗遗忘" />
+                <!--创建词库-->
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:onClick="@{()-> click.goCreate()}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_forget"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_forget"
+                    app:lune_bg="#F8C809"
+                    app:lune_drawable="@drawable/ic_create"
+                    app:lune_drawable_height="@dimen/dp_42"
+                    app:lune_drawable_width="@dimen/dp_50"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_22"
+                    app:lune_text_content="创建词库" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_68"
+                android:layout_marginTop="@dimen/dp_5"
+                android:orientation="horizontal"
+                android:weightSum="3">
+                <!--测评-->
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_test"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:onClick="@{()-> click.goEvaluation()}"
+                    app:layout_constraintLeft_toLeftOf="@+id/tv_forget"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_forget"
+                    app:lune_bg="#26D4A1"
+                    app:lune_drawable="@drawable/ic_test"
+                    app:lune_drawable_height="@dimen/dp_26"
+                    app:lune_drawable_width="@dimen/dp_26"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_7"
+                    app:lune_text_content="测评" />
+                <!--参考资料-->
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:onClick="@{()-> click.goReference()}"
+                    app:layout_constraintDimensionRatio="94:68"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_test"
+                    app:layout_constraintTop_toTopOf="@+id/tv_test"
+                    app:lune_bg="#FF7AB7"
+                    app:lune_drawable="@drawable/ic_desc"
+                    app:lune_drawable_height="@dimen/dp_26"
+                    app:lune_drawable_width="@dimen/dp_26"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_7"
+                    app:lune_text_content="参考资料" />
+                <!--个人中心-->
+                <com.nyw.lune.app.weight.EntranceView
+                    android:id="@+id/tv_mine"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:layout_marginLeft="@dimen/dp_5"
+                    android:onClick="@{()-> click.goUserCenter()}"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_desc"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_desc"
+                    app:lune_bg="#569CFE"
+                    app:lune_drawable="@drawable/ic_mine"
+                    app:lune_drawable_height="@dimen/dp_26"
+                    app:lune_drawable_width="@dimen/dp_26"
+                    app:lune_is_top="true"
+                    app:lune_padding="@dimen/dp_7"
+                    app:lune_text_content="个人中心" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_42"
+            android:layout_marginRight="@dimen/dp_42"
+            android:layout_marginBottom="@dimen/dp_10"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

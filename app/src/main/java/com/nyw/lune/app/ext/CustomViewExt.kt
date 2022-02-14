@@ -3,7 +3,6 @@ package com.nyw.lune.app.ext
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.view.View
-import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
 import android.widget.LinearLayout
@@ -16,11 +15,14 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
+import com.blankj.utilcode.util.ColorUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
+import com.hjq.bar.OnTitleBarListener
+import com.hjq.bar.TitleBar
 import com.nyw.lib_base.base.appContext
-import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import com.nyw.lib_base.ext.util.toHtml
 import com.nyw.lune.R
 import com.nyw.lune.app.network.stateCallback.ListDataUiState
 import com.nyw.lune.app.util.SettingUtil
@@ -30,6 +32,8 @@ import com.nyw.lune.app.weight.loadsir.loadCallBack.EmptyCallback
 import com.nyw.lune.app.weight.loadsir.loadCallBack.ErrorCallback
 import com.nyw.lune.app.weight.loadsir.loadCallBack.LoadingCallback
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
+import com.yanzhenjie.recyclerview.SwipeRecyclerView
+
 
 /**
  * 作者　: YuWen Nie
@@ -161,7 +165,7 @@ fun SwipeRefreshLayout.init(onRefreshListener: () -> Unit) {
 /**
  * 初始化普通的toolbar 只设置标题
  */
-fun Toolbar.init(titleStr: String = ""): Toolbar {
+fun TitleBar.init(titleStr: String = ""): TitleBar {
     setBackgroundColor(SettingUtil.getColor(appContext))
     title = titleStr
     return this
@@ -170,17 +174,26 @@ fun Toolbar.init(titleStr: String = ""): Toolbar {
 /**
  * 初始化有返回键的toolbar
  */
-//fun Toolbar.initClose(
-//    titleStr: String = "",
-//    backImg: Int = R.drawable.ic_back,
-//    onBack: (toolbar: Toolbar) -> Unit
-//): Toolbar {
-//    setBackgroundColor(SettingUtil.getColor(appContext))
-//    title = titleStr.toHtml()
-//    setNavigationIcon(backImg)
-//    setNavigationOnClickListener { onBack.invoke(this) }
-//    return this
-//}
+fun TitleBar.initClose(
+    leftTitleStr: String = "",
+    rithtTitleStr: String = "",
+    backImg: Int = R.drawable.ic_arrow_back,
+    onBack: (titleBar: TitleBar?) -> Unit
+): TitleBar {
+    setBackgroundColor(ColorUtils.getColor(R.color.white))
+    setLeftIcon(backImg)
+    leftTitle = leftTitleStr.toHtml()
+    rightTitle= rithtTitleStr.toHtml()
+    setLeftIconTint(R.color.colorBlack333)
+    setLeftTitleColor(R.color.colorBlack333)
+    setOnTitleBarListener(object : OnTitleBarListener {
+        override fun onLeftClick(titleBar: TitleBar?) {
+            super.onLeftClick(titleBar)
+            onBack.invoke(titleBar)
+        }
+    })
+    return this
+}
 
 /**
  * 根据控件的类型设置主题，注意，控件具有优先级， 基本类型的控件建议放到最后，像 Textview，FragmentLayout，不然会出现问题，
@@ -196,10 +209,6 @@ fun setUiTheme(color: Int, vararg anyList: Any?) {
                     SettingUtil.getOneColorStateList(color)
                 is SwipeRefreshLayout -> it.setColorSchemeColors(color)
                 is DefineLoadMoreView -> it.setLoadViewColor(SettingUtil.getOneColorStateList(color))
-                is BottomNavigationViewEx -> {
-                    it.itemIconTintList = SettingUtil.getColorStateList(color)
-                    it.itemTextColor = SettingUtil.getColorStateList(color)
-                }
                 is Toolbar -> it.setBackgroundColor(color)
                 is TextView -> it.setTextColor(color)
                 is LinearLayout -> it.setBackgroundColor(color)
@@ -303,67 +312,6 @@ fun ViewPager2.init(
     return this
 }
 
-//fun ViewPager2.initMain(fragment: Fragment): ViewPager2 {
-//    //是否可滑动
-//    this.isUserInputEnabled = false
-//    this.offscreenPageLimit = 5
-//    //设置适配器
-//    adapter = object : FragmentStateAdapter(fragment) {
-//        override fun createFragment(position: Int): Fragment {
-//            when (position) {
-//                0 -> {
-//                    return HomeFragment()
-//                }
-//                1 -> {
-//                    return ProjectFragment()
-//                }
-//                2 -> {
-//                    return TreeArrFragment()
-//                }
-//                3 -> {
-//                    return PublicNumberFragment()
-//                }
-//                4 -> {
-//                    return MeFragment()
-//                }
-//                else -> {
-//                    return HomeFragment()
-//                }
-//            }
-//        }
-//        override fun getItemCount() = 5
-//    }
-//    return this
-//}
-
-fun BottomNavigationViewEx.init(navigationItemSelectedAction: (Int) -> Unit): BottomNavigationViewEx {
-    enableAnimation(true)
-    enableShiftingMode(false)
-    enableItemShiftingMode(true)
-    itemIconTintList = SettingUtil.getColorStateList(SettingUtil.getColor(appContext))
-    itemTextColor = SettingUtil.getColorStateList(appContext)
-    setTextSize(12F)
-    setOnNavigationItemSelectedListener {
-        navigationItemSelectedAction.invoke(it.itemId)
-        true
-    }
-    return this
-}
-
-
-/**
- * 拦截BottomNavigation长按事件 防止长按时出现Toast ---- 追求完美的大屌群友提的bug
- * @receiver BottomNavigationViewEx
- * @param ids IntArray
- */
-fun BottomNavigationViewEx.interceptLongClick(vararg ids:Int) {
-    val bottomNavigationMenuView: ViewGroup = (this.getChildAt(0) as ViewGroup)
-    for (index in ids.indices){
-        bottomNavigationMenuView.getChildAt(index).findViewById<View>(ids[index]).setOnLongClickListener {
-            true
-        }
-    }
-}
 
 /**
  * 隐藏软键盘

@@ -9,6 +9,5 @@ package com.nyw.lune.data.model.bean
 data class MainItem(
     var itemPosition: Int,
     var title: String,
-    var imgRes: Int,
-    var bg: Int
+    var imgRes: Int
 )

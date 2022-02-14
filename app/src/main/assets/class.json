@@ -1,0 +1,107 @@
+[
+  {
+    "type": 1,
+    "className": "学前"
+  },
+  {
+    "type": 2,
+    "name": "学龄前",
+    "isSelect": true
+  },
+  {
+    "type": 1,
+    "className": "小学"
+  },
+  {
+    "type": 2,
+    "name": "一年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "二年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "三年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "四年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "五年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "六年级",
+    "isSelect": false
+  },
+  {
+    "type": 1,
+    "className": "初中"
+  },
+  {
+    "type": 2,
+    "name": "七年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "八年级",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "九年级",
+    "isSelect": false
+  },
+  {
+    "type": 1,
+    "className": "高中"
+  },
+  {
+    "type": 2,
+    "name": "高一",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "高二",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "高三",
+    "isSelect": false
+  },
+  {
+    "type": 1,
+    "className": "大学"
+  },
+  {
+    "type": 2,
+    "name": "CET4",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "CET6",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "雅思",
+    "isSelect": false
+  },
+  {
+    "type": 2,
+    "name": "托福",
+    "isSelect": false
+  }
+]

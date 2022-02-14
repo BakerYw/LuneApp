@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navation.xml"
+    app:startDestination="@id/mainfragment">
+    <fragment
+        android:id="@+id/mainfragment"
+        android:name="com.nyw.lune.ui.fragment.MainFragment"
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main_layout">
+        <action
+            android:id="@+id/action_mainfragment_to_loginfragment"
+            app:destination="@id/loginfragment"/>
+        <action
+            android:id="@+id/action_mainfragment_to_scanFragment"
+            app:destination="@id/scanFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_studyWithFragment"
+            app:destination="@id/studyWithFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_createThesaurusFragment"
+            app:destination="@id/createThesaurusFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_evaluationFragment"
+            app:destination="@id/evaluationFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_feedbackMessageFragment"
+            app:destination="@id/feedbackMessageFragment" />
+        <action
+            android:id="@+id/action_mainfragment_to_forgetFragment"
+            app:destination="@id/forgetFragment"
+           />
+        <action
+            android:id="@+id/action_mainfragment_to_userCenterFragment"
+            app:destination="@id/userCenterFragment"
+           />
+        <action
+            android:id="@+id/action_mainfragment_to_studyPlanFragment"
+            app:destination="@id/studyPlanFragment"
+           />
+        <action
+            android:id="@+id/action_mainfragment_to_rememberWordFragment"
+            app:destination="@id/rememberWordFragment"
+           />
+        <action
+            android:id="@+id/action_mainfragment_to_referenceMaterialFragment"
+            app:destination="@id/referenceMaterialFragment"
+           />
+        <action
+            android:id="@+id/action_mainfragment_to_systemMessageFragment"
+            app:destination="@id/systemMessageFragment"
+           />
+    </fragment>
+    <fragment
+        android:id="@+id/loginfragment"
+        android:name="com.nyw.lune.ui.fragment.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login_layout">
+        <action
+            android:id="@+id/action_loginfragment_to_mainfragment"
+            app:destination="@id/mainfragment"
+           />
+        <action
+            android:id="@+id/action_loginfragment_to_regiestFragment"
+            app:destination="@id/regiestFragment"
+           />
+        <action
+            android:id="@+id/action_loginfragment_to_forgetPwdFragment"
+            app:destination="@id/forgetPwdFragment"
+           />
+
+    </fragment>
+    <fragment
+        android:id="@+id/regiestFragment"
+        android:name="com.nyw.lune.ui.fragment.RegiestFragment"
+        android:label="regiest_fragment"
+        tools:layout="@layout/fragment_regiest_layout" />
+    <fragment
+        android:id="@+id/forgetPwdFragment"
+        android:name="com.nyw.lune.ui.fragment.RetrievePwdFragment"
+        android:label="forget_pwd_fragment"
+        tools:layout="@layout/fragment_retrieve_pwd_layout" />
+    <fragment
+        android:id="@+id/forgetFragment"
+        android:name="com.nyw.lune.ui.fragment.ForgetFragment"
+        android:label="forget_fragment"
+        tools:layout="@layout/forget_fragment" />
+    <fragment
+        android:id="@+id/scanFragment"
+        android:name="com.nyw.lune.ui.fragment.ScanFragment"
+        android:label="fragment_scan"
+        tools:layout="@layout/fragment_scan" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.nyw.lune.ui.fragment.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/studyWithFragment"
+        android:name="com.nyw.lune.ui.fragment.StudyWithFragment"
+        android:label="fragment_study_with"
+        tools:layout="@layout/fragment_study_with" />
+    <fragment
+        android:id="@+id/rememberWordFragment"
+        android:name="com.nyw.lune.ui.fragment.RememberWordFragment"
+        android:label="remember_word_fragment"
+        tools:layout="@layout/fragment_remember_word" />
+    <fragment
+        android:id="@+id/createThesaurusFragment"
+        android:name="com.nyw.lune.ui.fragment.CreateThesaurusFragment"
+        android:label="fragment_create_thesaurus"
+        tools:layout="@layout/fragment_create_thesaurus" />
+    <fragment
+        android:id="@+id/evaluationFragment"
+        android:name="com.nyw.lune.ui.fragment.EvaluationFragment"
+        android:label="fragment_evaluation"
+        tools:layout="@layout/fragment_evaluation" />
+    <fragment
+        android:id="@+id/referenceMaterialFragment"
+        android:name="com.nyw.lune.ui.fragment.ReferenceMaterialFragment"
+        android:label="fragment_reference_material"
+        tools:layout="@layout/fragment_reference_material" />
+    <fragment
+        android:id="@+id/userCenterFragment"
+        android:name="com.nyw.lune.ui.fragment.UserCenterFragment"
+        android:label="fragment_user_center"
+        tools:layout="@layout/fragment_user_center" />
+    <fragment
+        android:id="@+id/studyPlanFragment"
+        android:name="com.nyw.lune.ui.fragment.StudyPlanFragment"
+        android:label="fragment_study_plan"
+        tools:layout="@layout/fragment_study_plan" />
+    <fragment
+        android:id="@+id/feedbackMessageFragment"
+        android:name="com.nyw.lune.ui.fragment.FeedbackMessageFragment"
+        android:label="fragment_feedback_message"
+        tools:layout="@layout/fragment_feedback_message" />
+    <fragment
+        android:id="@+id/systemMessageFragment"
+        android:name="com.nyw.lune.ui.fragment.SystemMessageFragment"
+        android:label="fragment_system_message"
+        tools:layout="@layout/fragment_system_message" />
+</navigation>

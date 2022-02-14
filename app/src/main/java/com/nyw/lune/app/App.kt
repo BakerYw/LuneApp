@@ -2,22 +2,29 @@ package com.nyw.lune.app
 
 import androidx.multidex.MultiDex
 import cat.ereza.customactivityoncrash.config.CaocConfig
+import com.blankj.utilcode.util.Utils
+import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.style.IOSStyle
 import com.nyw.lib_base.base.BaseApp
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.crashreport.CrashReport
-import com.tencent.mmkv.MMKV
+import com.nyw.lib_base.ext.util.jetpackMvvmLog
+import com.nyw.lib_base.ext.util.logd
 import com.nyw.lune.BuildConfig
 import com.nyw.lune.app.event.AppViewModel
 import com.nyw.lune.app.event.EventViewModel
 import com.nyw.lune.app.ext.getProcessName
+import com.nyw.lune.app.weight.loadsir.callback.SuccessCallback
+import com.nyw.lune.app.weight.loadsir.core.LoadSir
 import com.nyw.lune.app.weight.loadsir.loadCallBack.EmptyCallback
 import com.nyw.lune.app.weight.loadsir.loadCallBack.ErrorCallback
 import com.nyw.lune.app.weight.loadsir.loadCallBack.LoadingCallback
 import com.nyw.lune.ui.activity.ErrorActivity
-import com.nyw.lib_base.ext.util.jetpackMvvmLog
-import com.nyw.lib_base.ext.util.logd
-import com.nyw.lune.app.weight.loadsir.callback.SuccessCallback
-import com.nyw.lune.app.weight.loadsir.core.LoadSir
+import com.nyw.lune.ui.activity.WelActivity
+import com.tencent.bugly.Bugly
+import com.tencent.bugly.crashreport.CrashReport
+import com.tencent.mmkv.MMKV
+import me.jessyan.autosize.AutoSizeConfig
+import me.jessyan.autosize.unit.Subunits
+
 
 /**
  * 作者　: YuWen Nie
@@ -46,6 +53,7 @@ class App : BaseApp() {
         eventViewModelInstance = getAppViewModelProvider().get(EventViewModel::class.java)
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
         MultiDex.install(this)
+        Utils.init(this)
         //界面加载管理 初始化
         LoadSir.beginBuilder()
             .addCallback(LoadingCallback())//加载
@@ -53,6 +61,38 @@ class App : BaseApp() {
             .addCallback(EmptyCallback())//空
             .setDefaultCallback(SuccessCallback::class.java)//设置默认加载状态页
             .commit()
+        initBugly()
+        initDialog()
+        initMyLog()
+        //防止项目崩溃，崩溃后打开错误界面
+        CaocConfig.Builder.create()
+            .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
+            .enabled(true)//是否启用CustomActivityOnCrash崩溃拦截机制 必须启用！不然集成这个库干啥？？？
+            .showErrorDetails(false) //是否必须显示包含错误详细信息的按钮 default: true
+            .showRestartButton(false) //是否必须显示“重新启动应用程序”按钮或“关闭应用程序”按钮default: true
+            .logErrorOnRestart(false) //是否必须重新堆栈堆栈跟踪 default: true
+            .trackActivities(true) //是否必须跟踪用户访问的活动及其生命周期调用 default: false
+            .minTimeBetweenCrashesMs(2000) //应用程序崩溃之间必须经过的时间 default: 3000
+            .restartActivity(WelActivity::class.java) // 重启的activity
+            .errorActivity(ErrorActivity::class.java) //发生错误跳转的activity
+            .apply()
+    }
+
+    private fun initMyLog() {
+        "".logd()
+        jetpackMvvmLog = BuildConfig.DEBUG
+    }
+
+    private fun initDialog() {
+        DialogX.init(this)
+        DialogX.implIMPLMode = DialogX.IMPL_MODE.VIEW
+        DialogX.useHaptic = true
+        DialogX.globalStyle = IOSStyle()
+        DialogX.globalTheme = DialogX.THEME.AUTO
+        DialogX.onlyOnePopTip = false
+    }
+
+    private fun initBugly() {
         //初始化Bugly
         val context = applicationContext
         // 获取当前包名
@@ -64,22 +104,6 @@ class App : BaseApp() {
         strategy.isUploadProcess = processName == null || processName == packageName
         // 初始化Bugly
         Bugly.init(context, if (BuildConfig.DEBUG) "xxx" else "a52f2b5ebb", BuildConfig.DEBUG)
-        "".logd()
-        jetpackMvvmLog = BuildConfig.DEBUG
-
-
-        //防止项目崩溃，崩溃后打开错误界面
-        CaocConfig.Builder.create()
-            .backgroundMode(CaocConfig.BACKGROUND_MODE_SILENT) //default: CaocConfig.BACKGROUND_MODE_SHOW_CUSTOM
-            .enabled(true)//是否启用CustomActivityOnCrash崩溃拦截机制 必须启用！不然集成这个库干啥？？？
-            .showErrorDetails(false) //是否必须显示包含错误详细信息的按钮 default: true
-            .showRestartButton(false) //是否必须显示“重新启动应用程序”按钮或“关闭应用程序”按钮default: true
-            .logErrorOnRestart(false) //是否必须重新堆栈堆栈跟踪 default: true
-            .trackActivities(true) //是否必须跟踪用户访问的活动及其生命周期调用 default: false
-            .minTimeBetweenCrashesMs(2000) //应用程序崩溃之间必须经过的时间 default: 3000
-//            .restartActivity(WelcomeActivity::class.java) // 重启的activity
-            .errorActivity(ErrorActivity::class.java) //发生错误跳转的activity
-            .apply()
     }
 
 }

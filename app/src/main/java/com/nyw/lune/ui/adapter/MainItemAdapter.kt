@@ -19,7 +19,6 @@ class MainItemAdapter(data: ArrayList<MainItem>) :
         item.run {
             holder.setText(R.id.tv_item,title)
             iv?.setImageResource(imgRes)
-            iv?.setBackgroundResource(bg)
         }
     }
 

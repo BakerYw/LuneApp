@@ -9,7 +9,7 @@
         android:id="@+id/viewpager_linear"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/colorPrimary"
+        android:background="@color/white"
         android:padding="2dp">
 
         <androidx.appcompat.widget.Toolbar
@@ -20,7 +20,7 @@
             app:contentInsetStart="0dp"
             app:popupTheme="@style/AppTheme.PopupOverlay" />
 
-        <net.lucode.hackware.magicindicator.MagicIndicator
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/magic_indicator"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
@@ -34,5 +34,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"/>
 </merge>

@@ -5,12 +5,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ConvertUtils
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.nyw.lib_base.ext.nav
 import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lune.R
 import com.nyw.lune.app.appViewModel
 import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.init
+import com.nyw.lune.app.util.CacheUtil
 import com.nyw.lune.app.weight.recyclerview.SpaceItemDecoration
 import com.nyw.lune.data.model.bean.MainItem
 import com.nyw.lune.databinding.FragmentMainLayoutBinding
@@ -35,6 +38,15 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false),
             mainItemAdapter
         )
+        CacheUtil.getUser().run {
+            if (this!=null && CacheUtil.isLogin()){
+                Glide.with(mActivity).load(headImg).into(image)
+                mViewModel.userTip.set(nickName)
+            }else{
+                mViewModel.userTip.set("登录/注册")
+            }
+        }
+
         val list = listOf(
             MainItem(0, "系统消息", R.drawable.ic_menu_notice),
             MainItem(1, "学习计划", R.drawable.ic_menu_study),
@@ -54,14 +66,16 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
         }
     }
 
+
     override fun createObserver() {
         appViewModel.run {
             //监听账户信息是否改变 有值时(登录)将设置为主页，为空时(退出登录)，设置为登陆页面
             userInfo.observeInFragment(this@MainFragment, Observer {
                 if (it != null) {
-
+                    Glide.with(mActivity).load(it.headImg).into(image)
+                    mViewModel.userTip.set(it.nickName)
                 }else{
-                    nav().navigateAction(R.id.action_mainfragment_to_loginfragment)
+                    mViewModel.userTip.set("登录/注册")
                 }
             })
         }
@@ -71,11 +85,15 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
     inner class ProxyClick {
 
         fun update(){
-            showToast("正在更新中")
+            showToast("正在开发中")
         }
 
-        fun goLogin(){
-            nav().navigateAction(R.id.action_mainfragment_to_loginfragment)
+        fun userAndLogin(){
+            if (CacheUtil.isLogin()){
+                nav().navigateAction(R.id.action_mainfragment_to_userCenterFragment)
+            }else{
+                nav().navigateAction(R.id.action_mainfragment_to_loginfragment)
+            }
         }
 
         fun goScan(){

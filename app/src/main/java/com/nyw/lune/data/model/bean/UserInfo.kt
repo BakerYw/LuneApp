@@ -1,4 +1,5 @@
 package com.nyw.lune.data.model.bean
+
 import android.annotation.SuppressLint
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
@@ -10,14 +11,11 @@ import kotlinx.android.parcel.Parcelize
  */
 @SuppressLint("ParcelCreator")
 @Parcelize
-data class UserInfo(var admin: Boolean = false,
-                    var chapterTops: List<String> = listOf(),
-                    var collectIds: MutableList<String> = mutableListOf(),
-                    var email: String="",
-                    var icon: String="",
-                    var id: String="",
-                    var nickname: String="",
-                    var password: String="",
-                    var token: String="",
-                    var type: Int =0,
-                    var username: String="") : Parcelable
+data class UserInfo(
+        var accessToken: String,
+        var account: String,
+        var headImg: String,
+        var mobile: String,
+        var nickName: String,
+        var realName: String,
+        var userId: Int) : Parcelable

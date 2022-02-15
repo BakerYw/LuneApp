@@ -18,17 +18,14 @@ import com.kongzue.dialogx.interfaces.OnBindView
 import com.nyw.lib_base.ext.nav
 import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
-import com.nyw.lune.app.appViewModel
 import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.init
 import com.nyw.lune.app.ext.initClose
-import com.nyw.lune.app.ext.showMessage
 import com.nyw.lune.data.model.bean.ClassInfo
 import com.nyw.lune.data.model.bean.ClassMultiItem
-import com.nyw.lune.data.model.req.RegisterAndLoginReq
 import com.nyw.lune.databinding.FragmentRegiestLayoutBinding
 import com.nyw.lune.ui.adapter.SelectClassAdapter
-import com.nyw.lune.viewmodel.request.RequestRegisterViewModel
+import com.nyw.lune.viewmodel.request.RequestUserManageViewModel
 import com.nyw.lune.viewmodel.state.RegiestViewModel
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -37,7 +34,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  * 注册
  */
 class RegiestFragment : BaseFragment<RegiestViewModel, FragmentRegiestLayoutBinding>() {
-    private val requestViewModel: RequestRegisterViewModel by viewModels()
+    private val requestViewModel: RequestUserManageViewModel by viewModels()
     private var countDownTimer: CountDownTimer? = null
     private var dialog: CustomDialog? = null
 
@@ -95,7 +92,7 @@ class RegiestFragment : BaseFragment<RegiestViewModel, FragmentRegiestLayoutBind
                         }
                         recyclerView.init(layoutManage, adapter, false)
                         btnOk.setOnClickListener {
-                            mViewModel.age.set(str)
+                            mViewModel.clbum.set(str)
                             dialog.dismiss()
                         }
                         btnCancel.setOnClickListener { dialog.dismiss() }
@@ -120,7 +117,7 @@ class RegiestFragment : BaseFragment<RegiestViewModel, FragmentRegiestLayoutBind
                 showToast(it.errorMsg)
             })
         })
-        requestViewModel.loginResult.observe(viewLifecycleOwner, Observer { resultState ->
+        requestViewModel.registerResult.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
                 showToast("注册成功")
                 nav().popBackStack()
@@ -133,24 +130,29 @@ class RegiestFragment : BaseFragment<RegiestViewModel, FragmentRegiestLayoutBind
 
     inner class ProxyClick {
         fun regiest() {
-            requestViewModel.registerAndLogin(
-                    mViewModel.name.get(),
-                    mViewModel.phone.get(),
+            requestViewModel.register(
+                    mViewModel.mobile.get(),//账户名默认为手机号
+                    mViewModel.clbum.get(),
+                    mViewModel.school.get(),
+                    mViewModel.mobile.get(),
+                    mViewModel.orgCode.get(),
                     mViewModel.password.get(),
-                    mViewModel.code.get()
-            )
+                    mViewModel.realName.get(),
+                    mViewModel.school.get(),
+                    mViewModel.score.get(),
+                    mViewModel.smsCode.get())
         }
 
         fun getCode() {
-            if (mViewModel.phone.get().isNullOrEmpty()) {
+            if (mViewModel.mobile.get().isNullOrEmpty()) {
                 showToast("手机号不能为空")
                 return
             }
-            if (mViewModel.phone.get().length != 11) {
+            if (mViewModel.mobile.get().length != 11) {
                 showToast("请输入正确的手机号")
                 return
             }
-            requestViewModel.getCode(mViewModel.phone.get(), 1)
+            requestViewModel.getCode(mViewModel.mobile.get())
         }
 
         fun select() {

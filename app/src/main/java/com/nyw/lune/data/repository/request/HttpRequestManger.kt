@@ -1,14 +1,5 @@
 package com.nyw.lune.data.repository.request
 
-import com.blankj.utilcode.util.GsonUtils
-import com.nyw.lib_base.network.AppException
-import com.nyw.lune.app.network.apiService
-import com.nyw.lune.data.model.ApiResponse
-import com.nyw.lune.data.model.bean.UserInfo
-import com.nyw.lune.data.model.req.RegisterAndLoginReq
-import okhttp3.MediaType
-import okhttp3.RequestBody
-
 /**
  * 作者　: hegaojian
  * 时间　: 2020/5/4

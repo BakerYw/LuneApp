@@ -32,17 +32,19 @@ class ScanFragment : BaseFragment<ScanViewModel, FragmentScanBinding>(){
     }
 
 
-
-
     override fun onResume() {
         super.onResume()
-        codeView?.startPreview()
+        if (codeView!=null){
+            codeView?.startPreview()
+        }
     }
 
 
 
     override fun onPause() {
-        codeView?.stopPreview()
+        if (codeView!=null){
+            codeView?.stopPreview()
+        }
         super.onPause()
     }
 }

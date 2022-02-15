@@ -73,9 +73,10 @@
                 android:layout_centerVertical="true"
                 android:layout_marginRight="@dimen/dp_16"
                 android:gravity="center"
-                android:onClick="@{()-> click.goLogin()}"
+                android:onClick="@{()-> click.userAndLogin()}"
                 android:orientation="vertical">
                 <ImageView
+                    android:id="@+id/image"
                     android:layout_width="@dimen/dp_13"
                     android:layout_height="@dimen/dp_13"
                     android:src="@drawable/ic_user"
@@ -84,7 +85,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="登录/注册"
+                    android:text="@{viewmodel.userTip}"
                     android:layout_marginTop="@dimen/dp_4"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_8" />

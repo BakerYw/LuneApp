@@ -9,33 +9,24 @@ import com.nyw.lib_base.callback.databind.IntObservableField
 import com.nyw.lib_base.callback.databind.StringObservableField
 
 class RegiestViewModel : BaseViewModel() {
-    //用户名
-    var phone = StringObservableField()
-
-    //获取验证码提示语
-    var codetip = StringObservableField()
-
-    //验证码
-    var code = StringObservableField()
-
+    //班级
+    var clbum = StringObservableField()
+    //手机号
+    var mobile = StringObservableField()
+    //机构码
+    var orgCode = StringObservableField()
     //密码(登录注册界面)
     var password = StringObservableField()
-
-    //机构码
-    var organCode = StringObservableField()
-
     //姓名
-    var name = StringObservableField()
-
-    //学校名字
-    var schoolName = StringObservableField()
-
-    //年级
-    var age = StringObservableField()
-
-
+    var realName = StringObservableField()
+    //学校
+    var school = StringObservableField()
     //分数
-    var grade = StringObservableField()
+    var score = StringObservableField()
+    //验证码
+    var smsCode = StringObservableField()
+    //获取验证码提示语
+    var codetip = StringObservableField()
 
     //是否显示明文密码（登录注册界面）
     var isShowPwd = BooleanObservableField()

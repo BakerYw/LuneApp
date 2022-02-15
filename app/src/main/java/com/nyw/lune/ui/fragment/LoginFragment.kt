@@ -13,10 +13,9 @@ import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.hideSoftKeyboard
 import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.app.ext.showMessage
-import com.nyw.lune.app.util.SettingUtil
+import com.nyw.lune.app.util.CacheUtil
 import com.nyw.lune.databinding.FragmentLoginLayoutBinding
-import com.nyw.lune.viewmodel.request.RequestLoginViewModel
-import com.nyw.lune.viewmodel.request.RequestRegisterViewModel
+import com.nyw.lune.viewmodel.request.RequestUserManageViewModel
 import com.nyw.lune.viewmodel.state.LoginViewModel
 import kotlinx.android.synthetic.main.include_toolbar.*
 
@@ -25,7 +24,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  * 登录
  */
 class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginLayoutBinding>() {
-    private val requestViewModel: RequestLoginViewModel by viewModels()
+    private val requestViewModel: RequestUserManageViewModel by viewModels()
     override fun layoutId()=R.layout.fragment_login_layout
     override fun initView(savedInstanceState: Bundle?) {
         mDatabind.viewmodel = mViewModel
@@ -39,6 +38,10 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginLayoutBinding>()
         requestViewModel.loginResult.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
                 showToast("登录成功")
+                CacheUtil.setIsLogin(true)
+                CacheUtil.setToken(it.accessToken)
+                CacheUtil.setUser(it)
+                appViewModel.userInfo.value = it
                 nav().navigateAction(R.id.action_loginfragment_to_mainfragment)
             }, {
                 showToast(it.errorMsg)
@@ -56,7 +59,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginLayoutBinding>()
             when {
                 mViewModel.username.get().isEmpty() -> showMessage("请填写账号")
                 mViewModel.password.get().isEmpty() -> showMessage("请填写密码")
-                else ->requestViewModel.registerAndLogin(
+                else ->requestViewModel.login(
                         mViewModel.username.get(),
                         mViewModel.password.get()
                 )
@@ -72,8 +75,7 @@ class LoginFragment : BaseFragment<LoginViewModel, FragmentLoginLayoutBinding>()
 
         fun goForgetPwd(){
             hideSoftKeyboard(activity)
-            nav().navigateAction(R.id.action_loginfragment_to_mainfragment)
-//            nav().navigateAction(R.id.action_loginfragment_to_forgetPwdFragment)
+            nav().navigateAction(R.id.action_loginfragment_to_forgetPwdFragment)
         }
 
         var onCheckedChangeListener =

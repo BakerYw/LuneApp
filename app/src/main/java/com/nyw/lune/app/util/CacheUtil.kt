@@ -9,6 +9,23 @@ import com.tencent.mmkv.MMKV
 
 object CacheUtil {
     /**
+     * token
+     */
+    fun getToken(): String {
+        val kv = MMKV.mmkvWithID("app")
+        return kv.decodeString("token", "")
+    }
+
+    /**
+     * 设置token
+     */
+    fun setToken(token: String) {
+        val kv = MMKV.mmkvWithID("app")
+        kv.encode("token", token)
+    }
+
+
+    /**
      * 获取保存的账户信息
      */
     fun getUser(): UserInfo? {

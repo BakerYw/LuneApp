@@ -3,10 +3,9 @@ package com.nyw.lune.app.event
 import com.kunminx.architecture.ui.callback.UnPeekLiveData
 import com.nyw.lib_base.base.viewmodel.BaseViewModel
 import com.nyw.lib_base.callback.livedata.event.EventLiveData
-import com.nyw.lib_base.base.appContext
 import com.nyw.lune.app.util.CacheUtil
 import com.nyw.lune.app.util.SettingUtil
-import com.nyw.lune.data.model.bean.UserInfo
+import com.nyw.lune.data.model.bean.response.UserResponse
 
 /**
  * 作者　: YuWen Nie
@@ -17,7 +16,7 @@ import com.nyw.lune.data.model.bean.UserInfo
 class AppViewModel : BaseViewModel() {
 
     //App的账户信息
-    var userInfo = UnPeekLiveData.Builder<UserInfo>().setAllowNullValue(true).create()
+    var userInfo = UnPeekLiveData.Builder<UserResponse>().setAllowNullValue(true).create()
 
     //App主题颜色 中大型项目不推荐以这种方式改变主题颜色，比较繁琐耦合，且容易有遗漏某些控件没有设置主题色
     var isMainTheme = EventLiveData<Boolean>()

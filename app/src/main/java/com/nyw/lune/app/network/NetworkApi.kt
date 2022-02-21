@@ -7,8 +7,9 @@ import com.google.gson.GsonBuilder
 import com.nyw.lib_base.base.appContext
 import com.nyw.lib_base.network.BaseNetworkApi
 import com.nyw.lib_base.network.interceptor.CacheInterceptor
-import com.nyw.lib_base.network.interceptor.logging.LogInterceptor
+import com.nyw.lib_base.network.interceptor.logging.HttpLogInterceptor
 import okhttp3.Cache
+import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -51,7 +52,7 @@ class NetworkApi : BaseNetworkApi() {
             //添加缓存拦截器 可传入缓存天数，不传默认7天
             addInterceptor(CacheInterceptor())
             // 日志拦截器
-            addInterceptor(LogInterceptor())
+            addInterceptor(HttpLogInterceptor())
             //超时时间 连接、读、写
             connectTimeout(10, TimeUnit.SECONDS)
             readTimeout(5, TimeUnit.SECONDS)

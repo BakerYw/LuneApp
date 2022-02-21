@@ -53,7 +53,7 @@ class MainActivity : BaseActivity<MainViewModel, ActivityMainBinding>() {
                     StatusBarUtil.setColor(this, ColorUtils.getColor(R.color.colorPrimary), 1)
                 } else {
                     StatusBarUtil.setDarkMode(this)
-                    StatusBarUtil.setColor(this, ColorUtils.getColor(R.color.white), 1)
+                    StatusBarUtil.setColor(this, ColorUtils.getColor(R.color.colorEF), 1)
                 }
             }
 

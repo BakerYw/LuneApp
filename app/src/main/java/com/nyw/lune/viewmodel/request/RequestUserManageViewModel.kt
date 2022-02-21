@@ -7,7 +7,7 @@ import com.nyw.lib_base.base.viewmodel.BaseViewModel
 import com.nyw.lib_base.ext.request
 import com.nyw.lib_base.state.ResultState
 import com.nyw.lune.app.network.apiService
-import com.nyw.lune.data.model.bean.UserInfo
+import com.nyw.lune.data.model.bean.response.UserResponse
 import com.nyw.lune.data.model.req.RegisterReq
 import okhttp3.MediaType
 import okhttp3.RequestBody
@@ -20,7 +20,7 @@ class RequestUserManageViewModel : BaseViewModel()  {
     var commonResult = MutableLiveData<ResultState<Any?>>()
     var registerResult = MutableLiveData<ResultState<Any?>>()
     var retrieveResult = MutableLiveData<ResultState<Any?>>()
-    var loginResult = MutableLiveData<ResultState<UserInfo>>()
+    var loginResult = MutableLiveData<ResultState<UserResponse>>()
 
 
     /**

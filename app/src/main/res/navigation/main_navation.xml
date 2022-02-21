@@ -57,7 +57,7 @@
     </fragment>
     <fragment
         android:id="@+id/loginfragment"
-        android:name="com.nyw.lune.ui.fragment.LoginFragment"
+        android:name="com.nyw.lune.ui.fragment.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login_layout">
         <action
@@ -76,12 +76,12 @@
     </fragment>
     <fragment
         android:id="@+id/regiestFragment"
-        android:name="com.nyw.lune.ui.fragment.RegiestFragment"
+        android:name="com.nyw.lune.ui.fragment.login.RegiestFragment"
         android:label="regiest_fragment"
         tools:layout="@layout/fragment_regiest_layout" />
     <fragment
         android:id="@+id/forgetPwdFragment"
-        android:name="com.nyw.lune.ui.fragment.RetrievePwdFragment"
+        android:name="com.nyw.lune.ui.fragment.login.RetrievePwdFragment"
         android:label="forget_pwd_fragment"
         tools:layout="@layout/fragment_retrieve_pwd_layout" />
     <fragment
@@ -101,12 +101,12 @@
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/studyWithFragment"
-        android:name="com.nyw.lune.ui.fragment.StudyWithFragment"
+        android:name="com.nyw.lune.ui.fragment.study.StudyWithFragment"
         android:label="fragment_study_with"
         tools:layout="@layout/fragment_study_with" />
     <fragment
         android:id="@+id/rememberWordFragment"
-        android:name="com.nyw.lune.ui.fragment.RememberWordFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.RememberWordFragment"
         android:label="remember_word_fragment"
         tools:layout="@layout/fragment_remember_word" />
     <fragment

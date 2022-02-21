@@ -3,8 +3,7 @@ package com.nyw.lune.app.util
 import android.text.TextUtils
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
-import com.nyw.lib_base.callback.livedata.event.EventLiveData
-import com.nyw.lune.data.model.bean.UserInfo
+import com.nyw.lune.data.model.bean.response.UserResponse
 import com.tencent.mmkv.MMKV
 
 object CacheUtil {
@@ -28,20 +27,20 @@ object CacheUtil {
     /**
      * 获取保存的账户信息
      */
-    fun getUser(): UserInfo? {
+    fun getUser(): UserResponse? {
         val kv = MMKV.mmkvWithID("app")
         val userStr = kv.decodeString("user")
         return if (TextUtils.isEmpty(userStr)) {
             null
         } else {
-            Gson().fromJson(userStr, UserInfo::class.java)
+            Gson().fromJson(userStr, UserResponse::class.java)
         }
     }
 
     /**
      * 设置账户信息
      */
-    fun setUser(userResponse: UserInfo?) {
+    fun setUser(userResponse: UserResponse?) {
         val kv = MMKV.mmkvWithID("app")
         if (userResponse == null) {
             kv.encode("user", "")

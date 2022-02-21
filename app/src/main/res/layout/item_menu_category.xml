@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/category_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:paddingTop="@dimen/dp_8"
+    android:paddingBottom="@dimen/dp_8"
+    android:maxLines="1"
+    android:minLines="1"
+    android:background="@color/white"
+    tools:text="产品分类"
+    android:textSize="@dimen/sp_9"
+    android:textColor="@color/colorBlack333"
+    xmlns:tools="http://schemas.android.com/tools">
+</TextView>

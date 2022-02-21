@@ -2,6 +2,8 @@ package com.nyw.lune.app.ext
 
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.Context
+import android.graphics.Color
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.FrameLayout
@@ -16,7 +18,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import androidx.viewpager2.widget.ViewPager2
 import com.blankj.utilcode.util.ColorUtils
-import com.blankj.utilcode.util.ToastUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.hjq.bar.OnTitleBarListener
@@ -33,6 +34,15 @@ import com.nyw.lune.app.weight.loadsir.loadCallBack.ErrorCallback
 import com.nyw.lune.app.weight.loadsir.loadCallBack.LoadingCallback
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import kotlinx.android.synthetic.main.fragment_study_with.*
+import net.lucode.hackware.magicindicator.MagicIndicator
+import net.lucode.hackware.magicindicator.buildins.UIUtil
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerTitleView
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.indicators.LinePagerIndicator
+import net.lucode.hackware.magicindicator.buildins.commonnavigator.titles.SimplePagerTitleView
 
 
 /**
@@ -180,10 +190,10 @@ fun TitleBar.initClose(
     backImg: Int = R.drawable.ic_arrow_back,
     onBack: (titleBar: TitleBar?) -> Unit
 ): TitleBar {
-    setBackgroundColor(ColorUtils.getColor(R.color.white))
+    setBackgroundColor(ColorUtils.getColor(R.color.colorEF))
     setLeftIcon(backImg)
     leftTitle = leftTitleStr.toHtml()
-    rightTitle= rithtTitleStr.toHtml()
+    rightTitle = rithtTitleStr.toHtml()
     setLeftIconTint(R.color.colorBlack333)
     setLeftTitleColor(R.color.colorBlack333)
     setOnTitleBarListener(object : OnTitleBarListener {
@@ -230,72 +240,58 @@ fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
     }
 }
 
-//fun MagicIndicator.bindViewPager2(
-//    viewPager: ViewPager2,
-//    mStringList: List<String> = arrayListOf(),
-//    action: (index: Int) -> Unit = {}) {
-//    val commonNavigator = CommonNavigator(appContext)
-//    commonNavigator.adapter = object : CommonNavigatorAdapter() {
-//
-//        override fun getCount(): Int {
-//            return  mStringList.size
-//        }
-//        override fun getTitleView(context: Context, index: Int): IPagerTitleView {
-//            return ScaleTransitionPagerTitleView(appContext).apply {
-//                //设置文本
-//                text = mStringList[index].toHtml()
-//                //字体大小
-//                textSize = 17f
-//                //未选中颜色
-//                normalColor = Color.WHITE
-//                //选中颜色
-//                selectedColor = Color.WHITE
-//                //点击事件
-//                setOnClickListener {
-//                    viewPager.currentItem = index
-//                    action.invoke(index)
-//                }
-//            }
-//        }
-//        override fun getIndicator(context: Context): IPagerIndicator {
-//            return LinePagerIndicator(context).apply {
-//                mode = LinePagerIndicator.MODE_EXACTLY
-//                //线条的宽高度
-//                lineHeight = UIUtil.dip2px(appContext, 3.0).toFloat()
-//                lineWidth = UIUtil.dip2px(appContext, 30.0).toFloat()
-//                //线条的圆角
-//                roundRadius = UIUtil.dip2px(appContext, 6.0).toFloat()
-//                startInterpolator = AccelerateInterpolator()
-//                endInterpolator = DecelerateInterpolator(2.0f)
-//                //线条的颜色
-//                setColors(Color.WHITE)
-//            }
-//        }
-//    }
-//    this.navigator = commonNavigator
-//
-//    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-//        override fun onPageSelected(position: Int) {
-//            super.onPageSelected(position)
-//            this@bindViewPager2.onPageSelected(position)
-//            action.invoke(position)
-//        }
-//
-//        override fun onPageScrolled(
-//            position: Int,
-//            positionOffset: Float,
-//            positionOffsetPixels: Int
-//        ) {
-//            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
-//            this@bindViewPager2.onPageScrolled(position, positionOffset, positionOffsetPixels)
-//        }
-//
-//        override fun onPageScrollStateChanged(state: Int) {
-//            super.onPageScrollStateChanged(state)
-//            this@bindViewPager2.onPageScrollStateChanged(state)
-//        }
-//    })
-//}
+fun MagicIndicator.bindViewPager2(
+    viewPager: ViewPager2,
+    mStringList: List<String> = arrayListOf(),
+    action: (index: Int) -> Unit = {}
+) {
+    val commonNavigator = CommonNavigator(appContext)
+    commonNavigator.isAdjustMode=true
+    commonNavigator.adapter = object : CommonNavigatorAdapter() {
+
+        override fun getCount(): Int {
+            return  mStringList.size
+        }
+        override fun getTitleView(context: Context, index: Int): IPagerTitleView {
+            val simplePagerTitleView = SimplePagerTitleView(context)
+            simplePagerTitleView.text = mStringList.get(index)
+            simplePagerTitleView.normalColor = Color.parseColor("#333333")
+            simplePagerTitleView.selectedColor = Color.parseColor("#ffffff")
+            simplePagerTitleView.setOnClickListener { viewPager.currentItem = index }
+            return simplePagerTitleView
+        }
+        override fun getIndicator(context: Context): IPagerIndicator {
+            val indicator = LinePagerIndicator(context)
+            val navigatorHeight = context.resources.getDimension(R.dimen.dp_40)
+            indicator.lineHeight = navigatorHeight
+            indicator.setColors(Color.parseColor("#26D4A1"))
+            return indicator
+        }
+    }
+    this.navigator = commonNavigator
+
+    viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
+        override fun onPageSelected(position: Int) {
+            super.onPageSelected(position)
+            this@bindViewPager2.onPageSelected(position)
+            action.invoke(position)
+        }
+
+        override fun onPageScrolled(
+            position: Int,
+            positionOffset: Float,
+            positionOffsetPixels: Int
+        ) {
+            super.onPageScrolled(position, positionOffset, positionOffsetPixels)
+            this@bindViewPager2.onPageScrolled(position, positionOffset, positionOffsetPixels)
+        }
+
+        override fun onPageScrollStateChanged(state: Int) {
+            super.onPageScrollStateChanged(state)
+            this@bindViewPager2.onPageScrollStateChanged(state)
+        }
+    })
+}
 
 fun ViewPager2.init(
     fragment: Fragment,

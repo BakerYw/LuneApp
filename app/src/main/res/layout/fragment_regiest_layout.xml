@@ -8,7 +8,7 @@
 
         <variable
             name="click"
-            type="com.nyw.lune.ui.fragment.RegiestFragment.ProxyClick" />
+            type="com.nyw.lune.ui.fragment.login.RegiestFragment.ProxyClick" />
 
         <variable
             name="viewmodel"

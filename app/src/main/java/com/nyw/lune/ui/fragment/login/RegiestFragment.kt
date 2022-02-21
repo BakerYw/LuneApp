@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.login
 
 import android.graphics.Color
 import android.os.Bundle
@@ -21,7 +21,7 @@ import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.init
 import com.nyw.lune.app.ext.initClose
-import com.nyw.lune.data.model.bean.ClassInfo
+import com.nyw.lune.data.model.bean.response.ClassResponse
 import com.nyw.lune.data.model.bean.ClassMultiItem
 import com.nyw.lune.databinding.FragmentRegiestLayoutBinding
 import com.nyw.lune.ui.adapter.SelectClassAdapter
@@ -70,8 +70,8 @@ class RegiestFragment : BaseFragment<RegiestViewModel, FragmentRegiestLayoutBind
                         val btnOk: TextView = v.findViewById(R.id.btn_ok)
                         val btnCancel: TextView = v.findViewById(R.id.btn_cancel)
                         val recyclerView: RecyclerView = v.findViewById(R.id.recyclerView)
-                        val list = GsonUtils.fromJson<MutableList<ClassInfo>>(ResourceUtils.readAssets2String("class.json"),
-                                object : TypeToken<List<ClassInfo>>() {}.type)
+                        val list = GsonUtils.fromJson<MutableList<ClassResponse>>(ResourceUtils.readAssets2String("class.json"),
+                                object : TypeToken<List<ClassResponse>>() {}.type)
                         val data= mutableListOf<ClassMultiItem>()
                         for (i in 0 until list.size){
                             data.add(i, ClassMultiItem(list[i].className,list[i].name,list[i].isSelect,list[i].type))

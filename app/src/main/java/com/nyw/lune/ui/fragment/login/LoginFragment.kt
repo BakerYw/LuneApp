@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.login
 
 import android.os.Bundle
 import android.widget.CompoundButton

@@ -9,19 +9,18 @@
 
     <ImageView
         android:id="@+id/loading_errorimg"
-        android:layout_width="@dimen/dp_240"
-        android:layout_height="@dimen/dp_148"
-        app:tint="@color/colorAccent"
-        android:src="@drawable/load_ic_error" />
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_100"
+        android:src="@drawable/ic_search_null" />
 
     <TextView
         android:id="@+id/error_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="很抱歉，您为个人用户暂无权限"
+        android:text="出错啦！"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
-        android:textColor="@color/colorAccent"
+        android:textColor="@color/colorBlack333"
         android:textSize="@dimen/sp_12" />
 
     <TextView
@@ -36,5 +35,5 @@
         android:background="@drawable/shape_accent_18"
         android:textColor="@color/white"
         android:textSize="@dimen/sp_12"
-        android:text="添加简历" />
+        android:text="点击重试" />
 </LinearLayout>

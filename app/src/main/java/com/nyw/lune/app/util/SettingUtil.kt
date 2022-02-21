@@ -16,6 +16,7 @@ import com.tencent.mmkv.MMKV
 import com.nyw.lune.R
 import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.app.weight.loadsir.loadCallBack.LoadingCallback
+import com.tencent.bugly.proguard.an
 import java.lang.reflect.InvocationTargetException
 import kotlin.math.roundToInt
 
@@ -27,7 +28,7 @@ object SettingUtil {
      */
     fun getColor(context: Context): Int {
         val setting = PreferenceManager.getDefaultSharedPreferences(context)
-        val defaultColor = ContextCompat.getColor(context, android.R.color.transparent)
+        val defaultColor = ContextCompat.getColor(context, R.color.colorAccent)
         val color = setting.getInt("color", defaultColor)
         return if (color != 0 && Color.alpha(color) != 255) {
             defaultColor

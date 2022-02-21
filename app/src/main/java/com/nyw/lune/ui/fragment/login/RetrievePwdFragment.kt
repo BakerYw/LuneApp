@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.login
 
 import android.os.Bundle
 import android.os.CountDownTimer
@@ -8,9 +8,7 @@ import androidx.lifecycle.Observer
 import com.blankj.utilcode.util.ColorUtils
 import com.nyw.lib_base.ext.nav
 import com.nyw.lib_base.ext.parseState
-import com.nyw.lune.viewmodel.state.ForgetPwdViewModel
 import com.nyw.lune.R
-import com.nyw.lune.app.appViewModel
 import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.databinding.FragmentRetrievePwdLayoutBinding

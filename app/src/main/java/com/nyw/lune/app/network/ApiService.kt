@@ -1,7 +1,11 @@
 package com.nyw.lune.app.network
 
+import com.nyw.lune.data.model.ApiPagerResponse
 import com.nyw.lune.data.model.ApiResponse
-import com.nyw.lune.data.model.bean.UserInfo
+import com.nyw.lune.data.model.bean.response.TagClassResponse
+import com.nyw.lune.data.model.bean.response.TagResponse
+import com.nyw.lune.data.model.bean.response.TogetherResponse
+import com.nyw.lune.data.model.bean.response.UserResponse
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -21,7 +25,7 @@ interface ApiService {
         const val PROD_URL = "https://luen.api.ssfast.cn"
     }
 
-/***************************************用户管理**********************************************/
+    /***************************************用户管理**********************************************/
     /**
      * 获取手机验证码
      */
@@ -38,7 +42,7 @@ interface ApiService {
      * 登录
      */
     @POST("/api/pad/user/login")
-    suspend fun login(@Body loginDTO: RequestBody): ApiResponse<UserInfo>
+    suspend fun login(@Body loginDTO: RequestBody): ApiResponse<UserResponse>
 
     /**
      * 退出登录
@@ -71,8 +75,44 @@ interface ApiService {
      */
     @GET("/api/pad/me/data")
     suspend fun getMineData(): ApiResponse<Any?>
+    /***************************************一起学**********************************************/
+    /**
+     * 一起学列表
+     */
+    @GET("/api/pad/together/list/page")
+    suspend fun getTogetherList(
+            @Query("queryType") queryType: Int,
+            @Query("currentPage") currentPage: Int,
+            @Query("pageSize") pageSize: Int
+    ): ApiResponse<ApiPagerResponse<ArrayList<TogetherResponse>>>
 
-/***************************************xx管理**********************************************/
+    /**
+     * 我的->组内成员
+     */
+    @GET("/api/pad/together/member/list")
+    suspend fun getMember(
+            @Query("shareId") shareId: Int
+    ): ApiResponse<Any?>
+
+    /***************************************记单词**********************************************/
+    /**
+     * 课程分类
+     */
+    @GET("/api/pad/lib/tag/list")
+    suspend fun getTag(
+            @Query("tagType") tagType: Int
+    ): ApiResponse<ArrayList<TagResponse>>
+
+
+    /**
+     * 课程分页查询
+     */
+    @POST("/api/pad/lib/list/page")
+    suspend fun getTagClassList(
+            @Body libDto: RequestBody
+    ): ApiResponse<ApiPagerResponse<ArrayList<TagClassResponse>>>
+
+    /***************************************xx管理**********************************************/
 
 
 }

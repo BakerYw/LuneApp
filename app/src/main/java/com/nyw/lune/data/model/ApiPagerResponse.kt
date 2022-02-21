@@ -6,26 +6,24 @@ import java.io.Serializable
  *  分页数据的基类
  */
 data class ApiPagerResponse<T>(
-    var datas: T,
-    var curPage: Int,
-    var offset: Int,
-    var over: Boolean,
-    var pageCount: Int,
-    var size: Int,
-    var total: Int
+    var list: T,
+    var currentPage: Int,
+    var totalPage: Int,
+    var pageSize: Int,
+    var totalResult: Int
 ) : Serializable {
     /**
      * 数据是否为空
      */
-    fun isEmpty() = (datas as List<*>).size == 0
+    fun isEmpty() = (list as List<*>).size == 0
 
     /**
      * 是否为刷新
      */
-    fun isRefresh() = offset == 0
+    fun isRefresh() = currentPage == 1
 
     /**
      * 是否还有更多数据
      */
-    fun hasMore() = !over
+    fun hasMore() = pageSize == totalResult
 }

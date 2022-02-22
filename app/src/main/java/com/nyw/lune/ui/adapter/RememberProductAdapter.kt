@@ -16,7 +16,7 @@ import com.nyw.lune.data.model.bean.response.TagResponse
  * @email：992116519@qq.com
  * @desc:
  */
-class ProductAdapter(data: ArrayList<TagClassResponse>) :
+class RememberProductAdapter(data: ArrayList<TagClassResponse>) :
     BaseQuickAdapter<TagClassResponse, BaseViewHolder>( R.layout.item_product, data) {
     override fun convert(holder: BaseViewHolder, item: TagClassResponse) {
         item.run {

@@ -7,21 +7,18 @@ import com.nyw.lib_base.ext.request
 import com.nyw.lib_base.state.ResultState
 import com.nyw.lune.app.network.apiService
 import com.nyw.lune.app.network.stateCallback.ListDataUiState
-import com.nyw.lune.data.model.bean.response.TagClassResponse
-import com.nyw.lune.data.model.bean.response.TagResponse
-import com.nyw.lune.data.model.bean.response.TogetherResponse
+import com.nyw.lune.data.model.bean.response.*
 import com.nyw.lune.data.model.req.GetTagClassReq
 import com.nyw.lune.data.model.req.RegisterReq
 import okhttp3.MediaType
 import okhttp3.RequestBody
 
-class RequestRememberViewModel : BaseViewModel() {
-    val mediaType = MediaType.parse("application/json; charset=UTF-8")
+class RequestMaterialViewModel : BaseViewModel() {
 
     //体系子栏目列表数据
-    var tagData: MutableLiveData<ResultState<ArrayList<TagResponse>>> = MutableLiveData()
+    var materialData: MutableLiveData<ResultState<ArrayList<CateResponse>>> = MutableLiveData()
 
-    var mTagClassDataState: MutableLiveData<ListDataUiState<TagClassResponse>> = MutableLiveData()
+    var mMaterialDataListState: MutableLiveData<ListDataUiState<CateMaterialResponse>> = MutableLiveData()
 
     var pageNo = 1
 
@@ -29,23 +26,20 @@ class RequestRememberViewModel : BaseViewModel() {
     /**
      * 获取分类
      */
-    fun getTag() {
-        request({ apiService.getTag(1) }, tagData, true, "获取中...")
+    fun getCate() {
+        request({ apiService.getCate() }, materialData, true, "获取中...")
     }
 
-    fun getTagClassDataList(
+    fun getCateList(
             isRefresh: Boolean,
-            tagId: Int,
-            keyword: String? = "",
-            libName: String? = ""
+            cateId: Int,
+            keyword: String? = ""
     ) {
         if (isRefresh) {
             pageNo = 1
         }
-        val str: String = GsonUtils.toJson(GetTagClassReq(
-                pageNo, keyword, libName, pageSize = 20, tagId = tagId, tagIds = arrayListOf()), GetTagClassReq::class.java)
-        val requestBody = RequestBody.create(mediaType, str)
-        request({ apiService.getTagClassList(requestBody) }, {
+
+        request({ apiService.getCateList(cateId,keyword,pageNo,pageSize = 10) }, {
             //请求成功
             pageNo++
             val listDataUiState =
@@ -57,7 +51,7 @@ class RequestRememberViewModel : BaseViewModel() {
                             isFirstEmpty = isRefresh && it.isEmpty(),
                             listData = it.list
                     )
-            mTagClassDataState.value = listDataUiState
+            mMaterialDataListState.value = listDataUiState
         }, {
             //请求失败
             val listDataUiState =
@@ -65,9 +59,9 @@ class RequestRememberViewModel : BaseViewModel() {
                             isSuccess = false,
                             errMessage = it.errorMsg,
                             isRefresh = isRefresh,
-                            listData = arrayListOf<TagClassResponse>()
+                            listData = arrayListOf<CateMaterialResponse>()
                     )
-            mTagClassDataState.value = listDataUiState
+            mMaterialDataListState.value = listDataUiState
         })
     }
 

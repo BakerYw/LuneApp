@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -9,10 +10,60 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:context=".ui.fragment.ReferenceMaterialFragment">
+        android:orientation="vertical">
 
         <include layout="@layout/include_toolbar" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/dp_85" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/category_list"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_5"
+                android:background="@color/white"
+                android:overScrollMode="never"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline_start"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:listitem="@layout/item_menu_category" />
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/guideline_start"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <include layout="@layout/include_search_layout" />
+
+                <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    android:id="@+id/product_swipeRefresh"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <com.yanzhenjie.recyclerview.SwipeRecyclerView
+                        android:id="@+id/product_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:overScrollMode="never"
+                        tools:listitem="@layout/item_product" />
+                </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 </layout>

@@ -121,7 +121,7 @@
         tools:layout="@layout/fragment_evaluation" />
     <fragment
         android:id="@+id/referenceMaterialFragment"
-        android:name="com.nyw.lune.ui.fragment.ReferenceMaterialFragment"
+        android:name="com.nyw.lune.ui.fragment.material.ReferenceMaterialFragment"
         android:label="fragment_reference_material"
         tools:layout="@layout/fragment_reference_material" />
     <fragment

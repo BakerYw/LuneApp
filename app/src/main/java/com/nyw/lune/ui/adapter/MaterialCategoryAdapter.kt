@@ -5,6 +5,7 @@ import com.blankj.utilcode.util.ColorUtils
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.nyw.lune.R
+import com.nyw.lune.data.model.bean.response.CateResponse
 import com.nyw.lune.data.model.bean.response.TagResponse
 
 /**
@@ -13,12 +14,12 @@ import com.nyw.lune.data.model.bean.response.TagResponse
  * @email：992116519@qq.com
  * @desc:
  */
-class CategoryAdapter(data: ArrayList<TagResponse>) :
-        BaseQuickAdapter<TagResponse, BaseViewHolder>(R.layout.item_menu_category, data) {
+class MaterialCategoryAdapter(data: ArrayList<CateResponse>) :
+        BaseQuickAdapter<CateResponse, BaseViewHolder>(R.layout.item_menu_category, data) {
     var position = 0
-    override fun convert(holder: BaseViewHolder, item: TagResponse) {
+    override fun convert(holder: BaseViewHolder, item: CateResponse) {
         item.run {
-            holder.setText(R.id.category_name, tagName)
+            holder.setText(R.id.category_name, cateName)
         }
         if (holder.position == position) {
             holder.setTextColor(R.id.category_name, ColorUtils.getColor(R.color.white))

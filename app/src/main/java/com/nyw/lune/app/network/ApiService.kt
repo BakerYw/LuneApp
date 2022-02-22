@@ -2,10 +2,7 @@ package com.nyw.lune.app.network
 
 import com.nyw.lune.data.model.ApiPagerResponse
 import com.nyw.lune.data.model.ApiResponse
-import com.nyw.lune.data.model.bean.response.TagClassResponse
-import com.nyw.lune.data.model.bean.response.TagResponse
-import com.nyw.lune.data.model.bean.response.TogetherResponse
-import com.nyw.lune.data.model.bean.response.UserResponse
+import com.nyw.lune.data.model.bean.response.*
 import okhttp3.RequestBody
 import retrofit2.http.Body
 import retrofit2.http.GET
@@ -111,6 +108,24 @@ interface ApiService {
     suspend fun getTagClassList(
             @Body libDto: RequestBody
     ): ApiResponse<ApiPagerResponse<ArrayList<TagClassResponse>>>
+
+    /***************************************参考资料*********************************************/
+    /**
+     *资料列表->类别分类
+     */
+    @GET("/api/pad/material/cate/list")
+    suspend fun getCate(): ApiResponse<ArrayList<CateResponse>>
+
+    /**
+     *资料列表->分页查询
+     */
+    @GET("/api/pad/material/list/page")
+    suspend fun getCateList(
+            @Query("cateId") cateId: Int,
+            @Query("keyword") keyword: String?,
+            @Query("currentPage") currentPage: Int,
+            @Query("pageSize") pageSize: Int
+    ): ApiResponse<ApiPagerResponse<ArrayList<CateMaterialResponse>>>
 
     /***************************************xx管理**********************************************/
 

@@ -15,17 +15,16 @@ import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
 import com.nyw.lune.app.weight.recyclerview.SpaceItemDecoration
 import com.nyw.lune.databinding.FragmentRememberWordBinding
-import com.nyw.lune.ui.activity.MainActivity
-import com.nyw.lune.ui.adapter.CategoryAdapter
-import com.nyw.lune.ui.adapter.ProductAdapter
-import com.nyw.lune.ui.adapter.StudyWithAdapter
+import com.nyw.lune.ui.adapter.RememberCategoryAdapter
+import com.nyw.lune.ui.adapter.RememberProductAdapter
 import com.nyw.lune.viewmodel.request.RequestRememberViewModel
-import com.nyw.lune.viewmodel.request.RequestStudyWithViewModel
 import com.nyw.lune.viewmodel.state.RememberWordViewModel
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
+import kotlinx.android.synthetic.main.fragment_reference_material.*
 import kotlinx.android.synthetic.main.fragment_remember_word.*
-import kotlinx.android.synthetic.main.include_recyclerview.*
-import kotlinx.android.synthetic.main.include_recyclerview.recyclerView
+import kotlinx.android.synthetic.main.fragment_remember_word.category_list
+import kotlinx.android.synthetic.main.fragment_remember_word.product_list
+import kotlinx.android.synthetic.main.fragment_remember_word.product_swipeRefresh
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 /**
@@ -33,8 +32,8 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  */
 class RememberWordFragment : BaseFragment<RememberWordViewModel, FragmentRememberWordBinding>(){
     private val requestViewModel: RequestRememberViewModel by viewModels()
-    private val categoryAdapter: CategoryAdapter by lazy { CategoryAdapter(arrayListOf()) }
-    private val productAdapter: ProductAdapter by lazy { ProductAdapter(arrayListOf()) }
+    private val rememberCategoryAdapter: RememberCategoryAdapter by lazy { RememberCategoryAdapter(arrayListOf()) }
+    private val rememberProductAdapter: RememberProductAdapter by lazy { RememberProductAdapter(arrayListOf()) }
     //recyclerview的底部加载view 因为在首页要动态改变他的颜色，所以加了他这个字段
     private lateinit var footView: DefineLoadMoreView
     //界面状态管理者
@@ -50,39 +49,46 @@ class RememberWordFragment : BaseFragment<RememberWordViewModel, FragmentRemembe
         loadsir = loadServiceInit(product_swipeRefresh) {
             //点击重试时触发的操作
             loadsir.showLoading()
-            requestViewModel.getTagClassDataList(true,"","",categoryAdapter.data[0].tagId)
+            requestViewModel.getTagClassDataList(true,mViewModel.tagId.get())
         }
-        category_list.init(LinearLayoutManager(context), categoryAdapter)
-        categoryAdapter.setOnItemClickListener { adapter, view, position ->
-            categoryAdapter.setSelect(position)
-            requestViewModel.getTagClassDataList(true,"","",categoryAdapter.data[position].tagId)
+        category_list.init(LinearLayoutManager(context), rememberCategoryAdapter)
+        rememberCategoryAdapter.setOnItemClickListener { adapter, view, position ->
+            rememberCategoryAdapter.setSelect(position)
+            mViewModel.tagId.set(rememberCategoryAdapter.data[position].tagId)
+            requestViewModel.getTagClassDataList(true,mViewModel.tagId.get())
         }
-        requestViewModel.getTag()
-        product_list.init(GridLayoutManager(context,3), productAdapter).let {
+        product_list.init(GridLayoutManager(context,3), rememberProductAdapter).let {
             it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
             footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
-                //requestViewModel.getTogetherList(false, queryType)
+                requestViewModel.getTagClassDataList(false, mViewModel.tagId.get())
             })
         }
+        //初始化 SwipeRefreshLayout
+        product_swipeRefresh.init {
+            //触发刷新监听时请求数据
+            requestViewModel.getTagClassDataList(true, mViewModel.tagId.get())
+        }
+        requestViewModel.getTag()
     }
+
 
 
     override fun createObserver() {
         requestViewModel.tagData.observe(viewLifecycleOwner, Observer { data ->
             parseState(data, {
-                categoryAdapter.setList(it)
-                categoryAdapter.notifyDataSetChanged()
+                rememberCategoryAdapter.setList(it)
                 //设置界面 加载中
                 loadsir.showLoading()
-                requestViewModel.getTagClassDataList(true,"","",categoryAdapter.data[0].tagId)
+                mViewModel.tagId.set(rememberCategoryAdapter.data[0].tagId)
+                requestViewModel.getTagClassDataList(true, mViewModel.tagId.get())
             }, {
-
+                showToast(it.errorMsg)
             })
         })
 
         requestViewModel.mTagClassDataState.observe(viewLifecycleOwner, Observer {
             //设值 新写了个拓展函数，搞死了这个恶心的重复代码
-            loadListData(it, productAdapter, loadsir, product_list, product_swipeRefresh)
+            loadListData(it, rememberProductAdapter, loadsir, product_list, product_swipeRefresh)
         })
     }
 }

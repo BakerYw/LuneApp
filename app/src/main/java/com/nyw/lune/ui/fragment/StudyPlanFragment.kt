@@ -7,7 +7,6 @@ import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.app.ext.loadServiceInit
 import com.nyw.lune.app.ext.showEmpty
-import com.nyw.lune.app.ext.showLoading
 import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.databinding.FragmentStudyPlanBinding
 import com.nyw.lune.viewmodel.state.StudyPlanViewModel

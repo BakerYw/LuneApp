@@ -27,7 +27,7 @@
                 android:layout_marginLeft="@dimen/dp_43"
                 android:layout_marginRight="@dimen/dp_43"
                 android:layout_marginBottom="@dimen/dp_24"
-                android:background="@drawable/button_selector"
+                android:background="@drawable/button_selector_accent"
                 android:gravity="center"
                 android:text="新增学习计划"
                 android:textColor="@color/white"

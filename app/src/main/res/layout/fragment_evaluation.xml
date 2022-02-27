@@ -3,15 +3,373 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+        <variable
+            name="click"
+            type="com.nyw.lune.ui.fragment.evaluation.EvaluationFragment.ProxyClick" />
 
+        <variable
+            name="viewmodel"
+            type="com.nyw.lune.viewmodel.state.EvaluationViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.fragment.EvaluationFragment">
+        tools:context=".ui.fragment.evaluation.EvaluationFragment">
 
         <include layout="@layout/include_toolbar" />
+        <ImageView
+            android:layout_width="@dimen/dp_319"
+            android:layout_height="@dimen/dp_107"
+            android:src="@drawable/ic_evaluation"
+            android:scaleType="fitCenter"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@color/white"
+            android:paddingTop="@dimen/dp_24"
+            android:paddingBottom="@dimen/dp_24"
+            android:paddingLeft="@dimen/dp_43"
+            android:paddingRight="@dimen/dp_43">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="@{viewmodel.firstVisible}"
+                android:gravity="center_horizontal">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="通过卢恩教研团队十余年一线英语教学研究开发的一套专门针对中国孩子学习英语的英语水平检测系统，能够准确的检测出学生的词汇水平"
+                    android:textColor="@color/colorBlack333"
+                    android:textSize="@dimen/sp_12" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_22">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/evaluation_icon1"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="有针对性的制定学习规划"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_12"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_22">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/evaluation_icon2"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="提升英语学习效率"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_12"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_22">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/evaluation_icon3"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="快速提高英语成绩"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_12"
+                        />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_marginRight="@dimen/dp_10"
+                    android:layout_marginTop="@dimen/dp_22">
+                    <ImageView
+                        android:layout_width="@dimen/dp_20"
+                        android:layout_height="@dimen/dp_20"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/evaluation_icon4"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="对老师的“因材施教”有重大借鉴意义"
+                        android:layout_marginLeft="@dimen/dp_20"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_12" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/base_view_next"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:visibility="@{viewmodel.secondVisible}"
+                android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="基本信息"
+                    android:gravity="center"
+                    android:textColor="@color/colorBlack333"
+                    android:textSize="@dimen/sp_12" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="准确填写信息，领取测评报告"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_8"
+                    android:layout_marginTop="@dimen/dp_5"/>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/ic_edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingRight="@dimen/dp_11">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="wrap_content"
+                        android:text=" 姓      名"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_9" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入你的姓名"
+                        android:text="@={viewmodel.realName}"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_9" />
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/ic_edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingRight="@dimen/dp_11">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="wrap_content"
+                        android:text=" 性      别"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_9" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请选择你的性别"
+                        android:inputType="text"
+                        android:text="@={viewmodel.sex}"
+                        android:onClick="@{()->click.selectSex()}"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:gravity="center|left"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_9" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10"
+                        android:layout_marginRight="6dp"
+                        android:src="@drawable/ic_select_age"
+                        android:onClick="@{()->click.selectSex()}" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/ic_edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingRight="@dimen/dp_11">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="wrap_content"
+                        android:text=" 年      级"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_9" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请选择所在年级"
+                        android:inputType="text"
+                        android:text="@={viewmodel.grade}"
+                        android:onClick="@{()->click.select()}"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:gravity="center|left"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_9" />
+
+                    <ImageView
+                        android:layout_width="@dimen/dp_10"
+                        android:layout_height="@dimen/dp_10"
+                        android:layout_marginRight="6dp"
+                        android:src="@drawable/ic_select_age"
+                        android:onClick="@{()->click.select()}" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/ic_edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingRight="@dimen/dp_11">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="wrap_content"
+                        android:text=" 学      校"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_9" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入你的学校名称"
+                        android:text="@={viewmodel.school}"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:maxLength="20"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/sp_9" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:layout_marginTop="@dimen/dp_14"
+                    android:background="@drawable/ic_edit_bg"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/dp_14"
+                    android:paddingRight="@dimen/dp_11">
+
+                    <TextView
+                        android:layout_width="@dimen/dp_38"
+                        android:layout_height="wrap_content"
+                        android:text=" 分      数"
+                        android:gravity="center|left"
+                        android:textStyle="bold"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_9" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="请输入英语成绩"
+                        android:inputType="text"
+                        android:lines="1"
+                        android:text="@={viewmodel.score}"
+                        android:maxLength="20"
+                        android:textColor="@color/black"
+                        android:layout_marginLeft="@dimen/dp_14"
+                        android:textSize="@dimen/sp_9" />
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="@dimen/dp_20">
+                <TextView
+                    android:id="@+id/cancel"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="@drawable/btn_normal"
+                    android:gravity="center"
+                    android:visibility="@{viewmodel.secondVisible}"
+                    android:text="@={viewmodel.cancelTip}"
+                    android:onClick="@{()->click.cancel()}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11"/>
+                <View
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="match_parent"
+                    android:visibility="@{viewmodel.secondVisible}"/>
+                <TextView
+                    android:id="@+id/submit"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="@drawable/button_selector_accent"
+                    android:gravity="center"
+                    android:text="@={viewmodel.submitTip}"
+                    android:onClick="@{()->click.submit()}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11"/>
+            </LinearLayout>
+        </LinearLayout>
+
     </LinearLayout>
 </layout>

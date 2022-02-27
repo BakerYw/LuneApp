@@ -16,7 +16,6 @@ import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.databinding.FragmentSearchBinding
 import com.nyw.lune.viewmodel.state.SearchViewModel
 import kotlinx.android.synthetic.main.include_toolbar.*
-import kotlin.math.withSign
 
 
 /**

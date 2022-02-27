@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.util.ConvertUtils
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.bumptech.glide.request.RequestOptions
 import com.nyw.lib_base.ext.nav
 import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lune.R
@@ -32,7 +34,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
 
 
     override fun initView(savedInstanceState: Bundle?) {
-        mDatabind.viewmodel = mViewModel
+        mDatabind.vm = mViewModel
         mDatabind.click = ProxyClick()
         recycler_main.init(
             LinearLayoutManager(context, RecyclerView.HORIZONTAL, false),
@@ -40,7 +42,8 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
         )
         CacheUtil.getUser().run {
             if (this!=null && CacheUtil.isLogin()){
-                Glide.with(mActivity).load(headImg).into(image)
+                Glide.with(mActivity).load(headImg).apply(RequestOptions.bitmapTransform(CircleCrop()))
+                        .transition(DrawableTransitionOptions.withCrossFade(500)).into(image)
                 mViewModel.userTip.set(nickName)
             }else{
                 mViewModel.userTip.set("登录/注册")
@@ -72,7 +75,11 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
             //监听账户信息是否改变 有值时(登录)将设置为主页，为空时(退出登录)，设置为登陆页面
             userInfo.observeInFragment(this@MainFragment, Observer {
                 if (it != null) {
-                    Glide.with(mActivity).load(it.headImg).into(image)
+                    Glide.with(mActivity)
+                            .load(it.headImg)
+                            .apply(RequestOptions.bitmapTransform(CircleCrop()))
+                            .transition(DrawableTransitionOptions.withCrossFade(500))
+                            .into(image)
                     mViewModel.userTip.set(it.nickName)
                 }else{
                     mViewModel.userTip.set("登录/注册")

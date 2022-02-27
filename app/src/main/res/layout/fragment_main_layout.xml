@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -10,7 +11,7 @@
             type="com.nyw.lune.ui.fragment.MainFragment.ProxyClick" />
 
         <variable
-            name="viewmodel"
+            name="vm"
             type="com.nyw.lune.viewmodel.state.MainViewModel" />
     </data>
 
@@ -80,12 +81,12 @@
                     android:layout_width="@dimen/dp_13"
                     android:layout_height="@dimen/dp_13"
                     android:src="@drawable/ic_user"
-                    android:scaleType="fitXY"/>
+                    android:scaleType="fitXY" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="@{viewmodel.userTip}"
+                    android:text="@{vm.userTip}"
                     android:layout_marginTop="@dimen/dp_4"
                     android:textColor="@color/white"
                     android:textSize="@dimen/sp_8" />

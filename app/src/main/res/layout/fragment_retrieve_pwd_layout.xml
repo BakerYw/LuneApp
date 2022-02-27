@@ -196,7 +196,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/dp_40"
                     android:layout_marginTop="@dimen/dp_140"
-                    android:background="@drawable/button_selector"
+                    android:background="@drawable/button_selector_accent"
                     android:gravity="center"
                     android:text="确 认"
                     android:onClick="@{()->click.submit()}"

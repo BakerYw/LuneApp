@@ -20,8 +20,6 @@ import com.nyw.lune.ui.adapter.RememberProductAdapter
 import com.nyw.lune.viewmodel.request.RequestRememberViewModel
 import com.nyw.lune.viewmodel.state.RememberWordViewModel
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import kotlinx.android.synthetic.main.fragment_reference_material.*
-import kotlinx.android.synthetic.main.fragment_remember_word.*
 import kotlinx.android.synthetic.main.fragment_remember_word.category_list
 import kotlinx.android.synthetic.main.fragment_remember_word.product_list
 import kotlinx.android.synthetic.main.fragment_remember_word.product_swipeRefresh

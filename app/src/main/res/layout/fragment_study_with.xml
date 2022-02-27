@@ -29,7 +29,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/dp_14"
-            android:layout_marginTop="@dimen/dp_9"
             android:layout_marginRight="@dimen/dp_14"
             android:overScrollMode="never" />
     </LinearLayout>

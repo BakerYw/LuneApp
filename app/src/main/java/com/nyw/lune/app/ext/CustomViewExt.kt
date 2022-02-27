@@ -36,7 +36,6 @@ import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
 import kotlinx.android.synthetic.main.fragment_study_with.*
 import net.lucode.hackware.magicindicator.MagicIndicator
-import net.lucode.hackware.magicindicator.buildins.UIUtil
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.CommonNavigator
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.CommonNavigatorAdapter
 import net.lucode.hackware.magicindicator.buildins.commonnavigator.abs.IPagerIndicator
@@ -188,7 +187,7 @@ fun TitleBar.initClose(
     leftTitleStr: String = "",
     rithtTitleStr: String = "",
     backImg: Int = R.drawable.ic_arrow_back,
-    onBack: (titleBar: TitleBar?) -> Unit
+    onBack: (clickType: Int?) -> Unit
 ): TitleBar {
     setBackgroundColor(ColorUtils.getColor(R.color.colorEF))
     setLeftIcon(backImg)
@@ -199,7 +198,12 @@ fun TitleBar.initClose(
     setOnTitleBarListener(object : OnTitleBarListener {
         override fun onLeftClick(titleBar: TitleBar?) {
             super.onLeftClick(titleBar)
-            onBack.invoke(titleBar)
+            onBack.invoke(0)//默认是返回按钮
+        }
+
+        override fun onRightClick(titleBar: TitleBar?) {
+            super.onRightClick(titleBar)
+            onBack.invoke(1)//右边
         }
     })
     return this

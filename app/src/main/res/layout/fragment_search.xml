@@ -81,7 +81,7 @@
                         android:paddingRight="@dimen/dp_9"
                         android:paddingTop="@dimen/dp_5"
                         android:paddingBottom="@dimen/dp_5"
-                        android:background="@drawable/button_selector"
+                        android:background="@drawable/button_selector_accent"
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toTopOf="parent"/>
                     <TextView

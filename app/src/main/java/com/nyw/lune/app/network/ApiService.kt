@@ -127,6 +127,21 @@ interface ApiService {
             @Query("pageSize") pageSize: Int
     ): ApiResponse<ApiPagerResponse<ArrayList<CateMaterialResponse>>>
 
+    /***************************************抗遗忘**********************************************/
+
+    /**
+     * 抗遗忘和训练->训练记录
+     */
+    @GET("/api/pad/plantrain/train/list")
+    suspend fun getPlanTrain(): ApiResponse<PlanTrainResponse>
+
+    /**
+     * 考核题库
+     */
+    @GET("/api/pad/plantrain/train/topic/list")
+    suspend fun getPlanTrainTopic(@Query("libId") libId: Int): ApiResponse<ArrayList<PlanTrainTopicResponse>>
+
+
     /***************************************xx管理**********************************************/
 
 

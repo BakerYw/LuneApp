@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="click"
+            type="com.nyw.lune.ui.fragment.evaluation.TestResultFragment.ProxyClick" />
+
+        <variable
+            name="viewmodel"
+            type="com.nyw.lune.viewmodel.state.TestResultViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/include_toolbar" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginRight="@dimen/dp_14"
+            android:layout_marginBottom="@dimen/dp_14"
+            android:orientation="vertical"
+            android:background="@color/white">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_150"
+                android:layout_marginLeft="@dimen/dp_44"
+                android:layout_marginTop="@dimen/dp_28"
+                android:layout_marginRight="@dimen/dp_44">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_test_result_bg" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="20"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_25" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="分"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_7" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="您的词汇量为100-200"
+                android:textColor="@color/colorBlack333"
+                android:layout_marginTop="@dimen/dp_28"
+                android:layout_marginRight="@dimen/dp_32"
+                android:layout_marginLeft="@dimen/dp_32"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="相当于零起点或小学一二年级的水平，只能认识生活中少数简单的名词，无法进行交流 / 阅读 / 写作，建议背诵小学词汇"
+                android:textColor="@color/colorBlack333"
+                android:textSize="@dimen/sp_12"
+                android:layout_marginTop="@dimen/dp_20"
+                android:layout_marginRight="@dimen/dp_32"
+                android:layout_marginLeft="@dimen/dp_32" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginRight="@dimen/dp_32"
+                android:layout_marginLeft="@dimen/dp_32">
+
+                <TextView
+                    android:id="@+id/complete"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="@drawable/button_selector_accent"
+                    android:gravity="center"
+                    android:text="完成测试"
+                    android:onClick="@{()->click.complete()}"
+                    android:layout_above="@+id/comeAgain"
+                    android:layout_marginBottom="@dimen/dp_10"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11" />
+
+                <TextView
+                    android:id="@+id/comeAgain"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_40"
+                    android:background="@drawable/button_selector_primary"
+                    android:gravity="center"
+                    android:text="再测一遍"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginBottom="@dimen/dp_60"
+                    android:onClick="@{()->click.comeAgain()}"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/sp_11" />
+            </RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+</layout>

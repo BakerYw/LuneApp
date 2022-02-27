@@ -11,6 +11,7 @@
         android:id="@+id/loading_errorimg"
         android:layout_width="@dimen/dp_100"
         android:layout_height="@dimen/dp_100"
+        android:layout_marginTop="-20dp"
         android:src="@drawable/ic_search_null" />
 
     <TextView
@@ -21,19 +22,13 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"
         android:textColor="@color/colorBlack333"
-        android:textSize="@dimen/sp_12" />
+        android:textSize="@dimen/sp_10" />
 
     <TextView
         android:id="@+id/error_btn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/dp_40"
-        android:paddingLeft="@dimen/dp_25"
-        android:paddingRight="@dimen/dp_25"
-        android:paddingTop="@dimen/dp_6"
-        android:paddingBottom="@dimen/dp_6"
-        android:background="@drawable/shape_accent_18"
-        android:textColor="@color/white"
-        android:textSize="@dimen/sp_12"
-        android:text="点击重试" />
+        android:textColor="@color/colorBlack999"
+        android:textSize="@dimen/sp_9"
+        android:text="点我重试" />
 </LinearLayout>

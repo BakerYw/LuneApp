@@ -86,9 +86,9 @@
         tools:layout="@layout/fragment_retrieve_pwd_layout" />
     <fragment
         android:id="@+id/forgetFragment"
-        android:name="com.nyw.lune.ui.fragment.ForgetFragment"
+        android:name="com.nyw.lune.ui.fragment.forget.ForgetFragment"
         android:label="forget_fragment"
-        tools:layout="@layout/forget_fragment" />
+        tools:layout="@layout/fragment_forget_layout" />
     <fragment
         android:id="@+id/scanFragment"
         android:name="com.nyw.lune.ui.fragment.ScanFragment"
@@ -116,9 +116,13 @@
         tools:layout="@layout/fragment_create_thesaurus" />
     <fragment
         android:id="@+id/evaluationFragment"
-        android:name="com.nyw.lune.ui.fragment.EvaluationFragment"
+        android:name="com.nyw.lune.ui.fragment.evaluation.EvaluationFragment"
         android:label="fragment_evaluation"
-        tools:layout="@layout/fragment_evaluation" />
+        tools:layout="@layout/fragment_evaluation" >
+        <action
+            android:id="@+id/action_evaluationFragment_to_testingFragment"
+            app:destination="@id/testingFragment" />
+    </fragment>
     <fragment
         android:id="@+id/referenceMaterialFragment"
         android:name="com.nyw.lune.ui.fragment.material.ReferenceMaterialFragment"
@@ -136,7 +140,7 @@
         tools:layout="@layout/fragment_study_plan" />
     <fragment
         android:id="@+id/feedbackMessageFragment"
-        android:name="com.nyw.lune.ui.fragment.FeedbackMessageFragment"
+        android:name="com.nyw.lune.ui.fragment.feedback.FeedbackMessageFragment"
         android:label="fragment_feedback_message"
         tools:layout="@layout/fragment_feedback_message" />
     <fragment
@@ -144,4 +148,26 @@
         android:name="com.nyw.lune.ui.fragment.SystemMessageFragment"
         android:label="fragment_system_message"
         tools:layout="@layout/fragment_system_message" />
+    <fragment
+        android:id="@+id/testingFragment"
+        android:name="com.nyw.lune.ui.fragment.evaluation.TestingFragment"
+        android:label="fragment_testing"
+        tools:layout="@layout/fragment_testing" >
+        <action
+            android:id="@+id/action_testingFragment_to_testResultFragment"
+            app:destination="@id/testResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testResultFragment"
+        android:name="com.nyw.lune.ui.fragment.evaluation.TestResultFragment"
+        android:label="fragment_test_result"
+        tools:layout="@layout/fragment_test_result" >
+        <action
+            android:id="@+id/action_action_testResultFragment_to_testingFragment_to_mainfragment"
+            app:destination="@id/mainfragment" />
+        <action
+            android:id="@+id/action_testResultFragment_to_testingFragment"
+            app:destination="@id/testingFragment" >
+        </action>
+    </fragment>
 </navigation>

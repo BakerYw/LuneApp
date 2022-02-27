@@ -2,21 +2,15 @@ package com.nyw.lune.ui.fragment
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.nyw.lib_base.ext.nav
-import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
 import com.nyw.lune.app.ext.init
 import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.data.model.bean.MainItem
 import com.nyw.lune.databinding.FragmentUserCenterBinding
-import com.nyw.lune.ui.adapter.MainItemAdapter
 import com.nyw.lune.ui.adapter.MineItemAdapter
 import com.nyw.lune.viewmodel.state.UserCenterViewModel
-import kotlinx.android.synthetic.main.fragment_main_layout.*
-import kotlinx.android.synthetic.main.fragment_main_layout.recycler_main
 import kotlinx.android.synthetic.main.fragment_user_center.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 

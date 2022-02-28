@@ -1,13 +1,16 @@
 package com.nyw.lune.ui.fragment.search
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.media.AudioFormat
 import android.media.MediaRecorder
 import android.os.Bundle
 import android.os.Environment
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
-import android.widget.ImageView
+import android.view.View.OnTouchListener
+import android.widget.TextView
 import com.blankj.utilcode.constant.PermissionConstants
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
@@ -82,17 +85,32 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         }
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private fun showRecordDialog() {
         BottomDialog.show(object :
                 OnBindView<BottomDialog?>(R.layout.layout_search_bottom_dialog) {
             override fun onBind(dialog: BottomDialog?, v: View?) {
-                val close = v?.findViewById<ImageView>(R.id.iv_close)
+                val title = v?.findViewById<TextView>(R.id.tv_title)
+                val tip = v?.findViewById<TextView>(R.id.tv_tip)
+                val recordBtn = v?.findViewById<TextView>(R.id.circle_btn)
                 val waveView = v?.findViewById<WaveView>(R.id.wave_view)
-                record(waveView, dialog)
-                close?.setOnClickListener {
-                    stopRecord()
-                    dialog?.dismiss()
+                title?.text = "请长按按钮，开始语音搜索"
+                tip?.visibility=View.INVISIBLE
+                recordBtn?.setOnLongClickListener {
+                    record(waveView, dialog)
+                    title?.text = "请读出单词，我正在聆听…"
+                    tip?.visibility=View.VISIBLE
+                    true
                 }
+                recordBtn?.setOnTouchListener(OnTouchListener { v, event ->
+                    when (event.action) {
+                        MotionEvent.ACTION_UP -> {
+                            stopRecord()
+                            return@OnTouchListener false
+                        }
+                    }
+                    false
+                })
             }
         }).isCancelable = false
     }
@@ -106,7 +124,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         idealRecorder?.setRecordFilePath(getSaveFilePath())
         //        idealRecorder.setWavFormat(false);
         //设置录音配置 最长录音时长 以及音量回调的时间间隔
-        idealRecorder?.setRecordConfig(recordConfig)?.setMaxRecordTime(10000)?.setVolumeInterval(200)
+        idealRecorder?.setRecordConfig(recordConfig)?.setMaxRecordTime(60000)?.setVolumeInterval(200)
         //设置录音时各种状态的监听
         idealRecorder?.setStatusListener(object : StatusListener() {
             override fun onStartRecording() {
@@ -137,8 +155,8 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
                 LogUtils.e("录音结束")
                 dialog?.dismiss()
                 //关闭弹窗后走 接口查询
-                val str=FileBase64.encodeBase64File(getSaveFilePath())
-                Log.e("nie","转换后得到：$str")
+                val str = FileBase64.encodeBase64File(getSaveFilePath())
+                Log.e("nie", "转换后得到：$str")
             }
         })
         idealRecorder?.start() //开始录音

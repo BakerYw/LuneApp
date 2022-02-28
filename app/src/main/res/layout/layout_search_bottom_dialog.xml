@@ -6,31 +6,21 @@
     android:layout_height="match_parent"
     android:padding="@dimen/dp_15">
 
-    <ImageView
-        android:id="@+id/iv_close"
-        android:layout_width="@dimen/dp_15"
-        android:layout_height="@dimen/dp_15"
-        android:scaleType="fitXY"
-        android:src="@drawable/ic_close"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/dp_30"
-        android:text="请读出单词，我正在聆听…"
         android:textColor="@color/colorBlack333"
         android:textSize="@dimen/sp_13"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/iv_close" />
+        app:layout_constraintTop_toTopOf="parent"/>
     <TextView
         android:id="@+id/tv_tip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="(10s后自动关闭)"
+        android:text="(松开按钮立即搜索)"
         android:textColor="@color/colorBlack999"
         android:textSize="@dimen/sp_9"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -51,4 +41,17 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_tip"/>
+
+    <TextView
+        android:id="@+id/circle_btn"
+        android:layout_width="@dimen/dp_60"
+        android:layout_height="@dimen/dp_60"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="@dimen/dp_30"
+        android:text="按住\n说话"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:background="@drawable/circle_selector_accent"
+        app:layout_constraintTop_toBottomOf="@+id/wave_view"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.message
 
 import android.os.Bundle
 import com.nyw.lib_base.ext.nav

@@ -53,9 +53,9 @@
 
         <ImageView
             android:id="@+id/welcome_image"
-            android:layout_width="108dp"
-            android:layout_height="108dp"
-            android:src="@mipmap/ic_launcher"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_main_icon"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

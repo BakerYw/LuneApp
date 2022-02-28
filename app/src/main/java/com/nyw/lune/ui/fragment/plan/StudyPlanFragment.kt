@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.plan
 
 import android.os.Bundle
 import com.nyw.lib_base.ext.nav
@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.include_toolbar.*
 /**
  * 学习计划
  */
-class StudyPlanFragment : BaseFragment<StudyPlanViewModel, FragmentStudyPlanBinding>(){
+class
+StudyPlanFragment : BaseFragment<StudyPlanViewModel, FragmentStudyPlanBinding>(){
     //界面状态管理者
     private lateinit var loadsir: LoadService<Any>
 

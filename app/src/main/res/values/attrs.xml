@@ -15,4 +15,14 @@
         <attr name="loading_view_size" format="dimension" />
         <attr name="android:color" />
     </declare-styleable>
+
+
+    <declare-styleable name="WaveView">
+        <attr name="waveColor" format="color"/>
+        <attr name="baselineColor" format="color"/>
+        <attr name="maxValue" format="integer"/>
+        <attr name="waveStokeWidth" format="dimension"/>
+        <attr name="invalidateTime" format="integer"/>
+        <attr name="space" format="dimension"/>
+    </declare-styleable>
 </resources>

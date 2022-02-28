@@ -1,4 +1,4 @@
-package com.nyw.lune.ui.fragment
+package com.nyw.lune.ui.fragment.mine
 
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager

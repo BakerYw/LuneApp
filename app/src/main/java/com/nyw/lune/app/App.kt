@@ -22,8 +22,7 @@ import com.nyw.lune.ui.activity.WelActivity
 import com.tencent.bugly.Bugly
 import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
-import me.jessyan.autosize.AutoSizeConfig
-import me.jessyan.autosize.unit.Subunits
+import tech.oom.idealrecorder.IdealRecorder
 
 
 /**
@@ -54,6 +53,7 @@ class App : BaseApp() {
         appViewModelInstance = getAppViewModelProvider().get(AppViewModel::class.java)
         MultiDex.install(this)
         Utils.init(this)
+        IdealRecorder.init(this)
         //界面加载管理 初始化
         LoadSir.beginBuilder()
             .addCallback(LoadingCallback())//加载

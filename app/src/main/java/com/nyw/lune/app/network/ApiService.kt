@@ -72,6 +72,37 @@ interface ApiService {
      */
     @GET("/api/pad/me/data")
     suspend fun getMineData(): ApiResponse<Any?>
+    /***************************************查单词**********************************************/
+
+    /**
+     * 根据文本查询单词
+     */
+    @GET("/api/pad/dict/query/text")
+    suspend fun getQueryWithText(@Query("word") word: String): ApiResponse<QueryWordResponse>
+
+    /**
+     * 根据语音二进制查询单词
+     */
+    @GET("/api/pad/dict/query/audio")
+    suspend fun getQueryWithAudio(@Query("base64Acc") base64Acc: String): ApiResponse<QueryWordResponse>
+
+
+    /**
+     * 查询出来的单词，添加生词本
+     */
+    @POST("/api/pad/dict/newword/add")
+    suspend fun addNewWord(@Body dictDto: RequestBody): ApiResponse<Any?>
+
+
+    /**
+     * 根据语音比对单词，获取读音评分
+     */
+    @POST("/api/pad/dict/compare")
+    suspend fun dictCompare(@Body dto: RequestBody): ApiResponse<Any?>
+
+
+
+
     /***************************************一起学**********************************************/
     /**
      * 一起学列表
@@ -108,6 +139,12 @@ interface ApiService {
     suspend fun getTagClassList(
             @Body libDto: RequestBody
     ): ApiResponse<ApiPagerResponse<ArrayList<TagClassResponse>>>
+
+
+    @GET("/api/pad/lib/detail")
+    suspend fun getCourseDesc(
+        @Query("libId") libId: Int
+    ): ApiResponse<CourseDescResponse>
 
     /***************************************参考资料*********************************************/
     /**

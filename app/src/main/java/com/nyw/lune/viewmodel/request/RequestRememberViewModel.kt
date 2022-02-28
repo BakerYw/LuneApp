@@ -7,6 +7,7 @@ import com.nyw.lib_base.ext.request
 import com.nyw.lib_base.state.ResultState
 import com.nyw.lune.app.network.apiService
 import com.nyw.lune.app.network.stateCallback.ListDataUiState
+import com.nyw.lune.data.model.bean.response.CourseDescResponse
 import com.nyw.lune.data.model.bean.response.TagClassResponse
 import com.nyw.lune.data.model.bean.response.TagResponse
 import com.nyw.lune.data.model.bean.response.TogetherResponse
@@ -17,13 +18,14 @@ import okhttp3.RequestBody
 
 class RequestRememberViewModel : BaseViewModel() {
     val mediaType = MediaType.parse("application/json; charset=UTF-8")
-
     //体系子栏目列表数据
     var tagData: MutableLiveData<ResultState<ArrayList<TagResponse>>> = MutableLiveData()
-
     var mTagClassDataState: MutableLiveData<ListDataUiState<TagClassResponse>> = MutableLiveData()
-
     var pageNo = 1
+
+
+    var courseDescData: MutableLiveData<ResultState<CourseDescResponse>> = MutableLiveData()
+
 
 
     /**
@@ -33,6 +35,9 @@ class RequestRememberViewModel : BaseViewModel() {
         request({ apiService.getTag(1) }, tagData, true, "获取中...")
     }
 
+    /**
+     * 获取该分类的课程列表
+     */
     fun getTagClassDataList(
             isRefresh: Boolean,
             tagId: Int,
@@ -70,6 +75,17 @@ class RequestRememberViewModel : BaseViewModel() {
             mTagClassDataState.value = listDataUiState
         })
     }
+
+
+    /**
+     * 获取该课程详情
+     */
+    fun getCourseDesc(libId:Int) {
+        request({ apiService.getCourseDesc(libId) }, courseDescData, true, "获取中...")
+    }
+
+
+
 
 
 }

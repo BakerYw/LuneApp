@@ -7,7 +7,7 @@
 
         <variable
             name="click"
-            type="com.nyw.lune.ui.fragment.SearchFragment.ProxyClick" />
+            type="com.nyw.lune.ui.fragment.search.SearchFragment.ProxyClick" />
 
         <variable
             name="viewmodel"
@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.fragment.SearchFragment">
+        tools:context=".ui.fragment.search.SearchFragment">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
@@ -38,7 +38,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
-                    android:visibility="gone"
+                    android:visibility="visible"
                     android:gravity="center"
                     android:orientation="vertical">
 
@@ -60,7 +60,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="@dimen/dp_15"
-                    android:visibility="visible">
+                    android:visibility="gone">
                     <TextView
                         android:id="@+id/tv_name"
                         android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
         <ImageView
             android:id="@+id/search_bar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="@dimen/dp_45"
             android:src="@drawable/ic_search_bottom"
             android:onClick="@{()->click.showDialog()}"
             app:layout_constraintBottom_toBottomOf="parent"

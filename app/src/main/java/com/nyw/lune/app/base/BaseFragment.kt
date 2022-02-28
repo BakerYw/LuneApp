@@ -3,10 +3,7 @@ package com.nyw.lune.app.base
 import android.graphics.Color
 import android.os.Bundle
 import android.view.Gravity
-import android.widget.Toast
-import androidx.core.content.ContextCompat
 import androidx.databinding.ViewDataBinding
-import com.blankj.utilcode.util.ColorUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.nyw.lib_base.base.fragment.BaseVmDbFragment
 import com.nyw.lib_base.base.viewmodel.BaseViewModel
@@ -14,10 +11,7 @@ import com.nyw.lune.R
 import com.nyw.lune.app.ext.dismissLoadingExt
 import com.nyw.lune.app.ext.hideSoftKeyboard
 import com.nyw.lune.app.ext.showLoadingExt
-import com.nyw.lune.app.util.ColorUtil
-import com.nyw.lune.app.util.StatusBarUtil
-import com.tencent.bugly.Bugly
-import com.tencent.bugly.Bugly.applicationContext
+
 
 /**
  * 作者　: YuWen Nie
@@ -83,12 +77,11 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
     }
 
 
-
     open fun showToast(message: String) {
         ToastUtils.make().setGravity(Gravity.CENTER, 0, 0)
-                .setTextSize(20)
-                .setBgResource(R.drawable.shape_toast_bg)
-                .setTextColor(Color.WHITE)
-                .setDurationIsLong(false).show(message)
+            .setTextSize(20)
+            .setBgResource(R.drawable.shape_toast_bg)
+            .setTextColor(Color.WHITE)
+            .setDurationIsLong(false).show(message)
     }
 }

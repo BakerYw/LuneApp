@@ -43,8 +43,8 @@
             app:destination="@id/studyPlanFragment"
            />
         <action
-            android:id="@+id/action_mainfragment_to_rememberWordFragment"
-            app:destination="@id/rememberWordFragment"
+            android:id="@+id/action_mainfragment_to_courseListFragment"
+            app:destination="@id/courseListFragment"
            />
         <action
             android:id="@+id/action_mainfragment_to_referenceMaterialFragment"
@@ -91,12 +91,12 @@
         tools:layout="@layout/fragment_forget_layout" />
     <fragment
         android:id="@+id/scanFragment"
-        android:name="com.nyw.lune.ui.fragment.ScanFragment"
+        android:name="com.nyw.lune.ui.fragment.scan.ScanFragment"
         android:label="fragment_scan"
         tools:layout="@layout/fragment_scan" />
     <fragment
         android:id="@+id/searchFragment"
-        android:name="com.nyw.lune.ui.fragment.SearchFragment"
+        android:name="com.nyw.lune.ui.fragment.search.SearchFragment"
         android:label="fragment_search"
         tools:layout="@layout/fragment_search" />
     <fragment
@@ -105,13 +105,18 @@
         android:label="fragment_study_with"
         tools:layout="@layout/fragment_study_with" />
     <fragment
-        android:id="@+id/rememberWordFragment"
-        android:name="com.nyw.lune.ui.fragment.remember.RememberWordFragment"
-        android:label="remember_word_fragment"
-        tools:layout="@layout/fragment_remember_word" />
+        android:id="@+id/courseListFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.CourseListFragment"
+        android:label="fragment_course_list"
+        tools:layout="@layout/fragment_course_list" >
+
+        <action
+            android:id="@+id/action_courseListFragment_to_courseDescFragment"
+            app:destination="@id/courseDescFragment" />
+    </fragment>
     <fragment
         android:id="@+id/createThesaurusFragment"
-        android:name="com.nyw.lune.ui.fragment.CreateThesaurusFragment"
+        android:name="com.nyw.lune.ui.fragment.create.CreateThesaurusFragment"
         android:label="fragment_create_thesaurus"
         tools:layout="@layout/fragment_create_thesaurus" />
     <fragment
@@ -130,12 +135,12 @@
         tools:layout="@layout/fragment_reference_material" />
     <fragment
         android:id="@+id/userCenterFragment"
-        android:name="com.nyw.lune.ui.fragment.UserCenterFragment"
+        android:name="com.nyw.lune.ui.fragment.mine.UserCenterFragment"
         android:label="fragment_user_center"
         tools:layout="@layout/fragment_user_center" />
     <fragment
         android:id="@+id/studyPlanFragment"
-        android:name="com.nyw.lune.ui.fragment.StudyPlanFragment"
+        android:name="com.nyw.lune.ui.fragment.plan.StudyPlanFragment"
         android:label="fragment_study_plan"
         tools:layout="@layout/fragment_study_plan" />
     <fragment
@@ -145,7 +150,7 @@
         tools:layout="@layout/fragment_feedback_message" />
     <fragment
         android:id="@+id/systemMessageFragment"
-        android:name="com.nyw.lune.ui.fragment.SystemMessageFragment"
+        android:name="com.nyw.lune.ui.fragment.message.SystemMessageFragment"
         android:label="fragment_system_message"
         tools:layout="@layout/fragment_system_message" />
     <fragment
@@ -170,4 +175,9 @@
             app:destination="@id/testingFragment" >
         </action>
     </fragment>
+    <fragment
+        android:id="@+id/courseDescFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.CourseDescFragment"
+        android:label="fragment_course_desc"
+        tools:layout="@layout/fragment_course_desc" />
 </navigation>

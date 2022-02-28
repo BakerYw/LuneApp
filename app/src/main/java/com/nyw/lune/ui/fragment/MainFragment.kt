@@ -116,7 +116,7 @@ class MainFragment : BaseFragment<MainViewModel, FragmentMainLayoutBinding>() {
         }
 
         fun goRememberWord(){
-            nav().navigateAction(R.id.action_mainfragment_to_rememberWordFragment)
+            nav().navigateAction(R.id.action_mainfragment_to_courseListFragment)
         }
 
 

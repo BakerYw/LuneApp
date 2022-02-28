@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.nyw.lib_base.ext.nav
+import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
@@ -14,21 +15,19 @@ import com.nyw.lune.app.ext.*
 import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
 import com.nyw.lune.app.weight.recyclerview.SpaceItemDecoration
-import com.nyw.lune.databinding.FragmentRememberWordBinding
+import com.nyw.lune.databinding.FragmentCourseListBinding
 import com.nyw.lune.ui.adapter.RememberCategoryAdapter
 import com.nyw.lune.ui.adapter.RememberProductAdapter
 import com.nyw.lune.viewmodel.request.RequestRememberViewModel
-import com.nyw.lune.viewmodel.state.RememberWordViewModel
+import com.nyw.lune.viewmodel.state.CourseListViewModel
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import kotlinx.android.synthetic.main.fragment_remember_word.category_list
-import kotlinx.android.synthetic.main.fragment_remember_word.product_list
-import kotlinx.android.synthetic.main.fragment_remember_word.product_swipeRefresh
+import kotlinx.android.synthetic.main.fragment_course_list.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 /**
- * 记单词
+ * 课程列表
  */
-class RememberWordFragment : BaseFragment<RememberWordViewModel, FragmentRememberWordBinding>(){
+class CourseListFragment : BaseFragment<CourseListViewModel, FragmentCourseListBinding>(){
     private val requestViewModel: RequestRememberViewModel by viewModels()
     private val rememberCategoryAdapter: RememberCategoryAdapter by lazy { RememberCategoryAdapter(arrayListOf()) }
     private val rememberProductAdapter: RememberProductAdapter by lazy { RememberProductAdapter(arrayListOf()) }
@@ -37,7 +36,7 @@ class RememberWordFragment : BaseFragment<RememberWordViewModel, FragmentRemembe
     //界面状态管理者
     private lateinit var loadsir: LoadService<Any>
 
-    override fun layoutId() = R.layout.fragment_remember_word
+    override fun layoutId() = R.layout.fragment_course_list
 
     override fun initView(savedInstanceState: Bundle?) {
         toolbar.initClose("记单词") {
@@ -55,10 +54,16 @@ class RememberWordFragment : BaseFragment<RememberWordViewModel, FragmentRemembe
             mViewModel.tagId.set(rememberCategoryAdapter.data[position].tagId)
             requestViewModel.getTagClassDataList(true,mViewModel.tagId.get())
         }
+
         product_list.init(GridLayoutManager(context,3), rememberProductAdapter).let {
             it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
             footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
                 requestViewModel.getTagClassDataList(false, mViewModel.tagId.get())
+            })
+        }
+        rememberProductAdapter.setOnItemClickListener {adapter, view, position ->
+            nav().navigateAction(R.id.action_courseListFragment_to_courseDescFragment,Bundle().apply {
+                putInt("libId", rememberProductAdapter.data[position].libId)
             })
         }
         //初始化 SwipeRefreshLayout

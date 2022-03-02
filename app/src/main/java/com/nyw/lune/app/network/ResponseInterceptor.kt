@@ -21,6 +21,7 @@ import java.io.IOException
  * 时间　: 2022/1/13
  * 描述　: token过期/未登录 ->拦截器
  */
+
 class ResponseInterceptor : Interceptor {
 
     private val gson:Gson by lazy { Gson() }

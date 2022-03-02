@@ -12,9 +12,6 @@ import okhttp3.MediaType
 import okhttp3.RequestBody
 import java.util.*
 
-/**
- * 抗遗忘和训练
- */
 class RequestSearchViewModel : BaseViewModel() {
     val mediaType = MediaType.parse("application/json; charset=UTF-8")
     var wordResult = MutableLiveData<ResultState<QueryWordResponse>>()

@@ -37,7 +37,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_43"
-            android:background="@drawable/shape_ef_5"
+            android:background="@drawable/shape_ef_5_bottom"
             android:gravity="center"
             android:orientation="horizontal"
             android:weightSum="2"

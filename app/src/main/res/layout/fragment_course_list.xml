@@ -48,7 +48,10 @@
                 app:layout_constraintStart_toEndOf="@+id/guideline_start"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <include layout="@layout/include_search_layout" />
+                <com.nyw.lune.app.weight.search.SearchView
+                    android:id="@+id/search_view"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
 
                 <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
                     android:id="@+id/product_swipeRefresh"

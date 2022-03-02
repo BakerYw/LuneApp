@@ -11,20 +11,34 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.View.OnTouchListener
 import android.widget.TextView
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.blankj.utilcode.constant.PermissionConstants
+import com.blankj.utilcode.util.ConvertUtils
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.kongzue.dialogx.dialogs.BottomDialog
 import com.kongzue.dialogx.interfaces.OnBindView
 import com.nyw.lib_base.ext.nav
+import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
-import com.nyw.lune.app.ext.PermissionHelper
-import com.nyw.lune.app.ext.initClose
+import com.nyw.lune.app.ext.*
 import com.nyw.lune.app.util.FileBase64
 import com.nyw.lune.app.weight.WaveView
+import com.nyw.lune.app.weight.loadsir.core.LoadService
+import com.nyw.lune.app.weight.recyclerview.SpaceItemDecoration
+import com.nyw.lune.app.weight.search.OnSearchOperationListener
 import com.nyw.lune.databinding.FragmentSearchBinding
+import com.nyw.lune.ui.adapter.ExplainItemAdapter
+import com.nyw.lune.ui.adapter.MainItemAdapter
+import com.nyw.lune.viewmodel.request.RequestSearchViewModel
 import com.nyw.lune.viewmodel.state.SearchViewModel
+import kotlinx.android.synthetic.main.fragment_main_layout.*
+import kotlinx.android.synthetic.main.fragment_search.*
+import kotlinx.android.synthetic.main.include_recyclerview.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import tech.oom.idealrecorder.IdealRecorder
 import tech.oom.idealrecorder.IdealRecorder.RecordConfig
@@ -35,8 +49,12 @@ import java.io.File
  * 查单词
  */
 class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
+    //界面状态管理者
+    private lateinit var loadsir: LoadService<Any>
+    private val requestViewModel: RequestSearchViewModel by viewModels()
     private var idealRecorder: IdealRecorder? = null
     private var recordConfig: RecordConfig? = null
+    private val mAdapter: ExplainItemAdapter by lazy { ExplainItemAdapter(arrayListOf()) }
 
     override fun layoutId() = R.layout.fragment_search
 
@@ -46,14 +64,67 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         toolbar.initClose("查单词") {
             nav().popBackStack()
         }
+        //状态页配置
+        loadsir = loadServiceInit(main_view) {}
         idealRecorder = IdealRecorder.getInstance()
         recordConfig = RecordConfig(MediaRecorder.AudioSource.MIC, 48000, AudioFormat.CHANNEL_IN_MONO, AudioFormat.ENCODING_PCM_16BIT)
-
+        loadsir.showEmpty("还没输入单词哦", false)
+        search_view.setOperationListener(onOperationListener)
+        explains_recycle.init(
+                LinearLayoutManager(context, RecyclerView.VERTICAL, false),
+                mAdapter
+        ).let {
+            it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(5f)))
+        }
     }
+
+    override fun createObserver() {
+        requestViewModel.wordResult.observe(viewLifecycleOwner, Observer { data ->
+            parseState(data, {
+                loadsir.showSuccess()
+                it.run {
+                    val translationStr = StringBuffer()
+                    for (s in translation) {
+                        translationStr.append(s)
+                    }
+                    mViewModel.word.set(word)
+                    mViewModel.translation.set(translationStr.toString())
+                    mViewModel.phonetic.set("国际：/$phonetic/")
+                    mViewModel.ukPhonetic.set("英式：/$ukPhonetic/")
+                    mViewModel.usPhonetic.set("美式：/$usPhonetic/")
+                    mViewModel.speakUrl.set(speakUrl)
+                    mViewModel.ukSpeakUrl.set(ukSpeech)
+                    mViewModel.usSpeakUrl.set(usSpeech)
+                    mAdapter.setList(explains.toList() as ArrayList<String>)
+                }
+            }, {
+                loadsir.showEmpty(it.errorMsg, false)
+            })
+        })
+    }
+
 
     inner class ProxyClick {
         fun showDialog() {
             checkPermissions()
+        }
+
+        fun addToNewWord(){
+
+        }
+
+
+        fun play(){
+
+        }
+
+        fun playUk(){
+
+        }
+
+
+        fun playUs(){
+
         }
     }
 
@@ -95,11 +166,11 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
                 val recordBtn = v?.findViewById<TextView>(R.id.circle_btn)
                 val waveView = v?.findViewById<WaveView>(R.id.wave_view)
                 title?.text = "请长按按钮，开始语音搜索"
-                tip?.visibility=View.INVISIBLE
+                tip?.visibility = View.INVISIBLE
                 recordBtn?.setOnLongClickListener {
                     record(waveView, dialog)
                     title?.text = "请读出单词，我正在聆听…"
-                    tip?.visibility=View.VISIBLE
+                    tip?.visibility = View.VISIBLE
                     true
                 }
                 recordBtn?.setOnTouchListener(OnTouchListener { v, event ->
@@ -112,7 +183,7 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
                     false
                 })
             }
-        }).isCancelable = false
+        })
     }
 
 
@@ -185,5 +256,20 @@ class SearchFragment : BaseFragment<SearchViewModel, FragmentSearchBinding>() {
         idealRecorder?.stop()
     }
 
+    private val onOperationListener: OnSearchOperationListener =
+            object : OnSearchOperationListener {
+                override fun onSearchResult(content: String) {
+                    if (content.isNullOrEmpty()) {
+                        showToast("请输入单词")
+                        return
+                    }
+                    mViewModel.keyWord.set(content)
+                    requestViewModel.getQueryWithText(mViewModel.keyWord.get())
+                }
+
+                override fun onContentChanged(content: String) {
+
+                }
+            }
 
 }

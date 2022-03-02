@@ -68,10 +68,29 @@ fun LoadService<*>.showError(message: String = "") {
     this.showCallback(ErrorCallback::class.java)
 }
 
+
+fun LoadService<*>.setEmptyText(message: String) {
+    if (message.isNotEmpty()) {
+        this.setCallBack(EmptyCallback::class.java) { _, view ->
+            view.findViewById<TextView>(R.id.empty_text).text = message
+        }
+    }
+}
+
+
+
+fun LoadService<*>.setShowEmptyTip(flag: Boolean) {
+    this.setCallBack(EmptyCallback::class.java) { _, view ->
+        view.findViewById<TextView>(R.id.empty_tip).visibility =if (flag) View.VISIBLE else View.GONE
+    }
+}
+
 /**
  * 设置空布局
  */
-fun LoadService<*>.showEmpty() {
+fun LoadService<*>.showEmpty(message: String = "",showTip:Boolean=true) {
+    this.setEmptyText(message)
+    this.setShowEmptyTip(showTip)
     this.showCallback(EmptyCallback::class.java)
 }
 
@@ -193,6 +212,7 @@ fun TitleBar.initClose(
     setLeftIcon(backImg)
     leftTitle = leftTitleStr.toHtml()
     rightTitle = rithtTitleStr.toHtml()
+    setLeftTitleSize(10f)
     setLeftIconTint(R.color.colorBlack333)
     setLeftTitleColor(R.color.colorBlack333)
     setOnTitleBarListener(object : OnTitleBarListener {

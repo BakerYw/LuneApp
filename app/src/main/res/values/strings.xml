@@ -16,4 +16,6 @@
     <string name="select_sex">选择性别</string>
     <string name="rationale_audio">录制声音保存录音需要录音和读取文件相关权限哦</string>
     <string name="course_buy">立即购买</string>
+    <string name="search">搜索</string>
+    <string name="et_search_hint">请输入单词</string>
 </resources>

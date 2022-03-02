@@ -79,7 +79,7 @@ abstract class BaseFragment<VM : BaseViewModel, DB : ViewDataBinding> : BaseVmDb
 
     open fun showToast(message: String) {
         ToastUtils.make().setGravity(Gravity.CENTER, 0, 0)
-            .setTextSize(20)
+            .setTextSize(10)
             .setBgResource(R.drawable.shape_toast_bg)
             .setTextColor(Color.WHITE)
             .setDurationIsLong(false).show(message)

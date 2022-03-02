@@ -14,6 +14,7 @@ import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
 import com.nyw.lune.app.appViewModel
 import com.nyw.lune.app.base.BaseFragment
+import com.nyw.lune.app.eventViewModel
 import com.nyw.lune.app.ext.initClose
 import com.nyw.lune.app.util.CacheUtil
 import com.nyw.lune.databinding.FragmentForgetLayoutBinding
@@ -43,6 +44,12 @@ class ForgetFragment : BaseFragment<ForgetViewModel, FragmentForgetLayoutBinding
 
 
     override fun createObserver() {
+        //默认监听
+        eventViewModel.toLoginEvent.observeInFragment(this) {
+            if (it) {
+                nav().navigateAction(R.id.action_to_loginfragment)
+            }
+        }
         requestViewModel.planTrainResult.observe(viewLifecycleOwner, Observer { resultState ->
             parseState(resultState, {
                 mViewModel.coin.set("${it.coin}")

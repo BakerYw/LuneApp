@@ -18,4 +18,5 @@
     <string name="course_buy">立即购买</string>
     <string name="search">搜索</string>
     <string name="et_search_hint">请输入单词</string>
+    <string name="material_search_hint">请输入单词</string>
 </resources>

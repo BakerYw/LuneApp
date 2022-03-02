@@ -6,11 +6,13 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.nyw.lib_base.ext.nav
 import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
+import com.nyw.lune.app.eventViewModel
 import com.nyw.lune.app.ext.*
 import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
@@ -77,6 +79,12 @@ class CourseListFragment : BaseFragment<CourseListViewModel, FragmentCourseListB
 
 
     override fun createObserver() {
+        //默认监听
+        eventViewModel.toLoginEvent.observeInFragment(this, Observer {
+            if (it) {
+                nav().navigateAction(R.id.action_to_loginfragment)
+            }
+        })
         requestViewModel.tagData.observe(viewLifecycleOwner, Observer { data ->
             parseState(data, {
                 rememberCategoryAdapter.setList(it)

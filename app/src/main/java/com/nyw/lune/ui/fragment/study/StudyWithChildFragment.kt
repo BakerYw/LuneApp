@@ -6,8 +6,11 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
+import com.nyw.lib_base.ext.nav
+import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
+import com.nyw.lune.app.eventViewModel
 import com.nyw.lune.app.ext.*
 import com.nyw.lune.app.weight.loadsir.core.LoadService
 import com.nyw.lune.app.weight.recyclerview.DefineLoadMoreView
@@ -89,6 +92,12 @@ class StudyWithChildFragment : BaseFragment<StudyWithChildViewModel, FragmentStu
 
 
     override fun createObserver() {
+        //默认监听
+        eventViewModel.toLoginEvent.observeInFragment(this, Observer {
+            if (it) {
+                nav().navigateAction(R.id.action_to_loginfragment)
+            }
+        })
         requestViewModel.mChildDataState.observe(viewLifecycleOwner, Observer {
             //设值 新写了个拓展函数，搞死了这个恶心的重复代码
             loadListData(it, mAdapter, loadsir, recyclerView, swipeRefresh)

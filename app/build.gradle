@@ -86,6 +86,9 @@ dependencies {
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.1.0"
     implementation 'androidx.preference:preference-ktx:1.1.1'
     implementation 'com.google.android:flexbox:2.0.1'
+    //富文本
+    implementation 'com.zzhoujay.richtext:richtext:3.0.7'
+    implementation 'com.zzhoujay:html:1.0.1'
     //录音功能
     implementation 'com.github.ideastudios:IdealRecorder:1.0.3'
     //指示器库

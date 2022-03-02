@@ -20,17 +20,23 @@ class RequestMaterialViewModel : BaseViewModel() {
 
     var mMaterialDataListState: MutableLiveData<ListDataUiState<CateMaterialResponse>> = MutableLiveData()
 
+    var materialDetailState: MutableLiveData<ResultState<CateMaterialResponse>> = MutableLiveData()
+
     var pageNo = 1
 
 
     /**
      * 获取分类
      */
-    fun getCate() {
-        request({ apiService.getCate() }, materialData, true, "获取中...")
+    fun getMaterialCate() {
+        request({ apiService.getMaterialCate() }, materialData, true, "获取中...")
     }
 
-    fun getCateList(
+
+    /**
+     * 获取分类数据
+     */
+    fun getMaterialCateList(
             isRefresh: Boolean,
             cateId: Int,
             keyword: String? = ""
@@ -39,7 +45,7 @@ class RequestMaterialViewModel : BaseViewModel() {
             pageNo = 1
         }
 
-        request({ apiService.getCateList(cateId,keyword,pageNo,pageSize = 10) }, {
+        request({ apiService.getMaterialCateList(cateId,keyword,pageNo,pageSize = 10) }, {
             //请求成功
             pageNo++
             val listDataUiState =
@@ -63,6 +69,11 @@ class RequestMaterialViewModel : BaseViewModel() {
                     )
             mMaterialDataListState.value = listDataUiState
         })
+    }
+
+
+    fun getMaterialDetail(materialId: Int) {
+        request({ apiService.getMaterialDetail(materialId) }, materialDetailState, true, "获取中...")
     }
 
 

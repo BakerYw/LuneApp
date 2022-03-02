@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.blankj.utilcode.util.ConvertUtils
 import com.nyw.lib_base.ext.nav
+import com.nyw.lib_base.ext.navigateAction
 import com.nyw.lib_base.ext.parseState
 import com.nyw.lune.R
 import com.nyw.lune.app.base.BaseFragment
@@ -20,9 +21,7 @@ import com.nyw.lune.ui.adapter.MaterialProductAdapter
 import com.nyw.lune.viewmodel.request.RequestMaterialViewModel
 import com.nyw.lune.viewmodel.state.ReferenceMaterialViewModel
 import com.yanzhenjie.recyclerview.SwipeRecyclerView
-import kotlinx.android.synthetic.main.fragment_reference_material.category_list
-import kotlinx.android.synthetic.main.fragment_reference_material.product_list
-import kotlinx.android.synthetic.main.fragment_reference_material.product_swipeRefresh
+import kotlinx.android.synthetic.main.fragment_reference_material.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 
 /**
@@ -49,25 +48,31 @@ class ReferenceMaterialFragment : BaseFragment<ReferenceMaterialViewModel, Fragm
         loadsir = loadServiceInit(product_swipeRefresh) {
             //点击重试时触发的操作
             loadsir.showLoading()
-            requestViewModel.getCateList(true, mViewModel.cateId.get())
+            requestViewModel.getMaterialCateList(true, mViewModel.cateId.get())
         }
+        search_view?.setEditTextHint(R.string.material_search_hint)
         category_list.init(LinearLayoutManager(context), categoryAdapter)
         categoryAdapter.setOnItemClickListener { adapter, view, position ->
             mViewModel.cateId.set(categoryAdapter.data[position].cateId)
             categoryAdapter.setSelect(position)
-            requestViewModel.getCateList(true, mViewModel.cateId.get())
+            requestViewModel.getMaterialCateList(true, mViewModel.cateId.get())
         }
-        requestViewModel.getCate()
+        requestViewModel.getMaterialCate()
         product_list.init(GridLayoutManager(context, 3), productAdapter).let {
             it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(8f)))
             footView = it.initFooter(SwipeRecyclerView.LoadMoreListener {
-                requestViewModel.getCateList(false, mViewModel.cateId.get())
+                requestViewModel.getMaterialCateList(false, mViewModel.cateId.get())
             })
         }
         //初始化 SwipeRefreshLayout
         product_swipeRefresh.init {
             //触发刷新监听时请求数据
-            requestViewModel.getCateList(true, mViewModel.cateId.get())
+            requestViewModel.getMaterialCateList(true, mViewModel.cateId.get())
+        }
+        productAdapter.setOnItemClickListener { adapter, view, position ->
+            nav().navigateAction(R.id.action_referenceMaterialFragment_to_materialDescFragment, Bundle().apply {
+                putParcelable("data", productAdapter.data[position])
+            })
         }
     }
 
@@ -80,7 +85,7 @@ class ReferenceMaterialFragment : BaseFragment<ReferenceMaterialViewModel, Fragm
                 mViewModel.cateId.set(categoryAdapter.data[0].cateId)
                 //设置界面 加载中
                 loadsir.showLoading()
-                requestViewModel.getCateList(true, mViewModel.cateId.get())
+                requestViewModel.getMaterialCateList(true, mViewModel.cateId.get())
             }, {
                 showToast(it.errorMsg)
             })

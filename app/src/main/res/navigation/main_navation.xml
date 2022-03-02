@@ -132,7 +132,11 @@
         android:id="@+id/referenceMaterialFragment"
         android:name="com.nyw.lune.ui.fragment.material.ReferenceMaterialFragment"
         android:label="fragment_reference_material"
-        tools:layout="@layout/fragment_reference_material" />
+        tools:layout="@layout/fragment_reference_material" >
+        <action
+            android:id="@+id/action_referenceMaterialFragment_to_materialDescFragment"
+            app:destination="@id/materialDescFragment" />
+    </fragment>
     <fragment
         android:id="@+id/userCenterFragment"
         android:name="com.nyw.lune.ui.fragment.mine.UserCenterFragment"
@@ -180,4 +184,12 @@
         android:name="com.nyw.lune.ui.fragment.remember.CourseDescFragment"
         android:label="fragment_course_desc"
         tools:layout="@layout/fragment_course_desc" />
+    <fragment
+        android:id="@+id/materialDescFragment"
+        android:name="com.nyw.lune.ui.fragment.material.MaterialDescFragment"
+        android:label="fragment_material_desc"
+        tools:layout="@layout/fragment_material_desc" />
+    <action
+        android:id="@+id/action_to_loginfragment"
+        app:destination="@id/loginfragment"/>
 </navigation>

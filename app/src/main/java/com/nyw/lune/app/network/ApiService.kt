@@ -151,18 +151,27 @@ interface ApiService {
      *资料列表->类别分类
      */
     @GET("/api/pad/material/cate/list")
-    suspend fun getCate(): ApiResponse<ArrayList<CateResponse>>
+    suspend fun getMaterialCate(): ApiResponse<ArrayList<CateResponse>>
 
     /**
      *资料列表->分页查询
      */
     @GET("/api/pad/material/list/page")
-    suspend fun getCateList(
+    suspend fun getMaterialCateList(
             @Query("cateId") cateId: Int,
             @Query("keyword") keyword: String?,
             @Query("currentPage") currentPage: Int,
             @Query("pageSize") pageSize: Int
     ): ApiResponse<ApiPagerResponse<ArrayList<CateMaterialResponse>>>
+
+
+    /**
+     * 资料详情
+     */
+    @GET("/api/pad/material/detail")
+    suspend fun getMaterialDetail(
+        @Query("materialId") materialId: Int
+    ): ApiResponse<CateMaterialResponse>
 
     /***************************************抗遗忘**********************************************/
 

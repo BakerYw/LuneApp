@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:bind="http://schemas.android.com/apk/res-auto">
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="click"
             type="com.nyw.lune.ui.fragment.remember.CourseDescFragment.ProxyClick" />
@@ -21,129 +22,143 @@
 
         <include layout="@layout/include_toolbar" />
 
-
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never"
             android:layout_marginLeft="@dimen/dp_14"
             android:layout_marginRight="@dimen/dp_14"
             android:layout_marginBottom="@dimen/dp_14"
-            android:background="@color/white"
-            android:paddingLeft="@dimen/dp_43"
-            android:paddingRight="@dimen/dp_43">
+            android:background="@color/white">
 
-            <ImageView
-                android:id="@+id/iv_img"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_261"
-                android:layout_marginTop="@dimen/dp_43"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_default_pic"
-                bind:imageUrl="@{vm.imageUrl}"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_9"
-                android:text="人教版-3年级（上）"
-                android:textColor="@color/colorBlack333"
-                android:textSize="@dimen/sp_15"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/iv_img" />
-
-            <ImageView
-                android:id="@+id/iv_share"
-                android:layout_width="@dimen/dp_15"
-                android:layout_height="@dimen/dp_15"
-                android:src="@drawable/ic_share"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_name"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_name" />
-
-            <TextView
-                android:id="@+id/tv_author"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_9"
-                android:text="作者：系统词库"
-                android:textColor="@color/colorBlack999"
-                android:textSize="@dimen/sp_9"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_name" />
-
-            <TextView
-                android:id="@+id/tv_word_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="单词个数：24"
-                android:textColor="@color/colorBlack999"
-                android:textSize="@dimen/sp_9"
-                app:layout_constraintLeft_toRightOf="@+id/tv_author"
-                app:layout_constraintRight_toLeftOf="@+id/tv_people_num"
-                app:layout_constraintTop_toTopOf="@+id/tv_author" />
-
-            <TextView
-                android:id="@+id/tv_people_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="参与人数：20"
-                android:textColor="@color/colorBlack999"
-                android:textSize="@dimen/sp_9"
-                app:layout_constraintLeft_toRightOf="@+id/tv_word_num"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_author" />
-
-            <View
-                android:id="@+id/v_line"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_2"
-                android:layout_marginTop="@dimen/dp_10"
-                android:background="@drawable/forget_line"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_author" />
-
-            <TextView
-                android:id="@+id/tv_price"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/dp_10"
-                android:text="词库价格"
-                android:textColor="@color/colorBlack999"
-                android:textSize="@dimen/sp_9"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/v_line" />
+                android:minHeight="@dimen/dp_500"
+                android:paddingLeft="@dimen/dp_43"
+                android:paddingRight="@dimen/dp_43">
 
-            <TextView
-                android:id="@+id/tv_desc"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="@dimen/dp_5"
-                android:text="词库说明"
-                android:textColor="@color/colorBlack999"
-                android:textSize="@dimen/sp_9"
-                app:layout_constraintBottom_toTopOf="@+id/tv_buy"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+                <ImageView
+                    android:id="@+id/iv_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_261"
+                    android:layout_marginTop="@dimen/dp_43"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_default_pic"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    bind:imageUrl="@{vm.imageUrl}" />
 
-            <TextView
-                android:id="@+id/tv_buy"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_33"
-                android:layout_marginBottom="@dimen/dp_24"
-                android:background="@drawable/button_selector_primary"
-                android:gravity="center"
-                android:text="@string/course_buy"
-                android:onClick="@{()-> click.buy()}"
-                android:textColor="@color/white"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:text="@={vm.libName}"
+                    android:textColor="@color/colorBlack333"
+                    android:textSize="@dimen/sp_15"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/collect"
+                    app:layout_constraintTop_toBottomOf="@+id/iv_img" />
 
+                <com.nyw.lune.app.weight.CollectView
+                    android:id="@+id/collect"
+                    android:layout_width="@dimen/dp_20"
+                    android:layout_height="@dimen/dp_20"
+                    android:layout_marginEnd="@dimen/dp_14"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                    app:layout_constraintRight_toLeftOf="@+id/iv_share"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+                <ImageView
+                    android:id="@+id/iv_share"
+                    android:layout_width="@dimen/dp_15"
+                    android:layout_height="@dimen/dp_15"
+                    android:src="@drawable/ic_share"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv_name"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_9"
+                    android:text="@={vm.nickName}"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_9"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+
+                <TextView
+                    android:id="@+id/tv_word_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={vm.wordCount}"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_9"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_author"
+                    app:layout_constraintRight_toLeftOf="@+id/tv_people_num"
+                    app:layout_constraintTop_toTopOf="@+id/tv_author" />
+
+                <TextView
+                    android:id="@+id/tv_people_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={vm.joinerCount}"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_9"
+                    app:layout_constraintLeft_toRightOf="@+id/tv_word_num"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv_author" />
+
+                <View
+                    android:id="@+id/v_line"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_2"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:background="@drawable/forget_line"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_author" />
+
+                <TextView
+                    android:id="@+id/tv_price"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_10"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_9"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v_line" />
+
+                <TextView
+                    android:id="@+id/tv_desc"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:text="@={vm.libDesc}"
+                    android:textColor="@color/colorBlack999"
+                    android:textSize="@dimen/sp_9"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_buy"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_price" />
+
+                <TextView
+                    android:id="@+id/tv_buy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_33"
+                    android:background="@drawable/button_selector_primary"
+                    android:gravity="center"
+                    android:layout_marginBottom="@dimen/dp_25"
+                    android:onClick="@{()-> click.buyAndStudy()}"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
     </LinearLayout>
 </layout>

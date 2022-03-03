@@ -183,7 +183,11 @@
         android:id="@+id/courseDescFragment"
         android:name="com.nyw.lune.ui.fragment.remember.CourseDescFragment"
         android:label="fragment_course_desc"
-        tools:layout="@layout/fragment_course_desc" />
+        tools:layout="@layout/fragment_course_desc" >
+        <action
+            android:id="@+id/action_courseDescFragment_to_selectLevelFragment"
+            app:destination="@id/selectLevelFragment" />
+    </fragment>
     <fragment
         android:id="@+id/materialDescFragment"
         android:name="com.nyw.lune.ui.fragment.material.MaterialDescFragment"
@@ -192,4 +196,18 @@
     <action
         android:id="@+id/action_to_loginfragment"
         app:destination="@id/loginfragment"/>
+    <fragment
+        android:id="@+id/selectLevelFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.SelectLevelFragment"
+        android:label="fragment_select_level"
+        tools:layout="@layout/fragment_select_level" >
+        <action
+            android:id="@+id/action_selectLevelFragment_to_selectWordFragment"
+            app:destination="@id/selectWordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/selectWordFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.SelectWordFragment"
+        android:label="fragment_select_word"
+        tools:layout="@layout/fragment_select_word" />
 </navigation>

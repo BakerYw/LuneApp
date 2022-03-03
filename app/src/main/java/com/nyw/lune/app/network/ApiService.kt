@@ -146,6 +146,13 @@ interface ApiService {
         @Query("libId") libId: Int
     ): ApiResponse<CourseDescResponse>
 
+    @GET("/api/pad/lib/level/info")
+    suspend fun getLevelDesc(
+        @Query("libId") libId: Int
+    ): ApiResponse<CourseLevelResponse>
+
+
+
     /***************************************参考资料*********************************************/
     /**
      *资料列表->类别分类

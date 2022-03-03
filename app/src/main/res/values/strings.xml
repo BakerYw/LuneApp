@@ -15,8 +15,12 @@
     <string name="dialog_forget_tip2">抗遗忘要领：看到单词，先“读”后“点”，先读出英文， 并说出他的中文意思，然后点开确认，加深记忆；对于遗 忘的单词“勾选”，同时用3遍点读法，完成一次巩固训练， 全部词汇完成复习后，放入生词本，便于日常巩固复习</string>
     <string name="select_sex">选择性别</string>
     <string name="rationale_audio">录制声音保存录音需要录音和读取文件相关权限哦</string>
+    <string name="course_study">立即学习</string>
     <string name="course_buy">立即购买</string>
     <string name="search">搜索</string>
     <string name="et_search_hint">请输入单词</string>
     <string name="material_search_hint">请输入单词</string>
+    <string name="select_level">选词训练</string>
+    <string name="start_study">开始学习</string>
+    <string name="all_select">全选</string>
 </resources>

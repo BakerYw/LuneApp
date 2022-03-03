@@ -6,6 +6,7 @@ import com.kongzue.dialogx.dialogs.MessageDialog
 import com.nyw.lune.app.eventViewModel
 import com.nyw.lune.app.util.CacheUtil
 import com.nyw.lune.data.model.ApiErrorResponse
+import com.nyw.lune.data.model.ApiResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
@@ -33,10 +34,10 @@ class ResponseInterceptor : Interceptor {
             val contentType =response.body()?.contentType()
             val str=response.body()?.string()
             val responseBody=ResponseBody.create(contentType, str)
-            val apiResponse =gson.fromJson(str, ApiErrorResponse::class.java)
+            val apiResponse =gson.fromJson(str, ApiResponse::class.java)
             //判断逻辑
-            when(apiResponse.status){
-                400 -> goLogin()
+            when(apiResponse.code){
+                993 -> goLogin()
             }
             response.newBuilder().body(responseBody).build()
         }else{

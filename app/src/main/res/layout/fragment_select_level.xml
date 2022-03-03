@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="click"
+            type="com.nyw.lune.ui.fragment.remember.SelectLevelFragment.ProxyClick" />
+
+        <variable
+            name="vm"
+            type="com.nyw.lune.viewmodel.state.SelectLevelViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/include_toolbar" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_115"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginRight="@dimen/dp_14"
+            android:layout_marginBottom="@dimen/dp_14"
+            android:background="@color/white"
+            android:padding="@dimen/dp_14">
+
+            <LinearLayout
+                android:id="@+id/left_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.totalLevel}"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_19" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_8" />
+                </LinearLayout>
+
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="单词关卡"
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/center_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@={vm.wordCount}"
+                    android:textColor="@color/colorBlack333"
+                    android:textSize="@dimen/sp_19" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="总单词"
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="8sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/right_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/dp_20"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@={vm.studyLevels}"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_19" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="关"
+                        android:textColor="@color/colorBlack333"
+                        android:textSize="@dimen/sp_8" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="已学习关卡"
+                    android:textColor="@color/colorBlack666"
+                    android:textSize="@dimen/sp_8" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/line"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_2"
+                android:layout_marginTop="@dimen/dp_5"
+                android:background="@drawable/forget_line"
+                app:layout_constraintTop_toBottomOf="@+id/left_layout" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_10"
+                android:text="毎关14个单词，根据个人学习计划，先勾选每轮训练的关数，如勾选【第一关】后，点击【选词训练】，挑选出不会的生词，进入【记单词】训练学习"
+                android:textColor="@color/colorBlack999"
+                android:textSize="@dimen/sp_9"
+                app:layout_constraintTop_toBottomOf="@+id/line" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/dp_14"
+            android:layout_marginRight="@dimen/dp_14"
+            android:layout_marginBottom="@dimen/dp_14"
+            android:background="@color/white"
+            android:padding="@dimen/dp_14">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/level_recycle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_above="@+id/submit"
+                android:layout_alignParentTop="true"
+                android:overScrollMode="never" />
+
+            <TextView
+                android:id="@+id/submit"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_40"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp_10"
+                android:background="@drawable/button_selector_accent"
+                android:gravity="center"
+                android:text="@string/select_level"
+                android:onClick="@{()->click.toSelectWord()}"
+                android:textColor="@color/white"
+                android:textSize="@dimen/sp_11" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

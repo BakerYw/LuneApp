@@ -204,10 +204,18 @@
         <action
             android:id="@+id/action_selectLevelFragment_to_selectWordFragment"
             app:destination="@id/selectWordFragment" />
+        <action
+            android:id="@+id/action_selectLevelFragment_to_rememberWordFragment"
+            app:destination="@id/rememberWordFragment" />
     </fragment>
     <fragment
         android:id="@+id/selectWordFragment"
         android:name="com.nyw.lune.ui.fragment.remember.SelectWordFragment"
         android:label="fragment_select_word"
         tools:layout="@layout/fragment_select_word" />
+    <fragment
+        android:id="@+id/rememberWordFragment"
+        android:name="com.nyw.lune.ui.fragment.remember.RememberWordFragment"
+        android:label="fragment_remember_word"
+        tools:layout="@layout/fragment_remember_word" />
 </navigation>

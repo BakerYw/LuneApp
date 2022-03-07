@@ -12,5 +12,7 @@ data class WordResponse(
         var translation: String? = "",
         var word: String? = "",
         var wordId: Int,
-        var isSelect:Int
+        var isSelect:Int,
+        var isJustStudy:Boolean=false,
+        var isBackStudy:Boolean=false
 ) : Parcelable

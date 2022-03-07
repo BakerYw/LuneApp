@@ -30,8 +30,7 @@ import kotlinx.android.synthetic.main.include_toolbar.*
  */
 class SelectWordFragment : BaseFragment<SelectWordViewModel, FragmentSelectWordBinding>() {
     private var libId = 0
-    private var data: ArrayList<LevelItem>? = null
-    private var levels = mutableListOf<Int>()
+    private var levels:ArrayList<Int>?=ArrayList()
     private val requestViewModel: RequestRememberViewModel by viewModels()
     private val mAdapter: SelectWordAdapter by lazy { SelectWordAdapter(arrayListOf()) }
     override fun layoutId() = R.layout.fragment_select_word
@@ -41,15 +40,7 @@ class SelectWordFragment : BaseFragment<SelectWordViewModel, FragmentSelectWordB
         }
         arguments?.let {
             libId = it.getInt("libId")
-            data = it.getParcelableArrayList("data")
-        }
-        data?.let {
-            for (index in 0 until it.size) {
-                if (it[index].isSelect) {
-                    Log.e("nie", "选中了：${it[index].text}")
-                    levels.add(it[index].level)
-                }
-            }
+            levels = it.getIntegerArrayList("levels")
         }
         recycler_view.init(LinearLayoutManager(context), mAdapter).let {
             it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(10f)))

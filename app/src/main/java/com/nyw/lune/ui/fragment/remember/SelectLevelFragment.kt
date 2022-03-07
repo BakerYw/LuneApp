@@ -1,8 +1,6 @@
 package com.nyw.lune.ui.fragment.remember
 
 import android.os.Bundle
-import android.os.Parcelable
-import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,10 +19,8 @@ import com.nyw.lune.databinding.FragmentSelectLevelBinding
 import com.nyw.lune.ui.adapter.SelectLevelAdapter
 import com.nyw.lune.viewmodel.request.RequestRememberViewModel
 import com.nyw.lune.viewmodel.state.SelectLevelViewModel
-import com.tencent.bugly.proguard.m
 import kotlinx.android.synthetic.main.fragment_select_level.*
 import kotlinx.android.synthetic.main.include_toolbar.*
-import java.util.*
 import kotlin.collections.ArrayList
 
 /**
@@ -50,6 +46,17 @@ class SelectLevelFragment : BaseFragment<SelectLevelViewModel, FragmentSelectLev
         level_recycle.init(LinearLayoutManager(context), mAdapter).let {
             it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(10f),false))
         }
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            val levels= mutableListOf<Int>()
+            levels.add(mAdapter.data[position].level)
+            nav().navigateAction(
+                    R.id.action_selectLevelFragment_to_rememberWordFragment,
+                    Bundle().apply {
+                        putString("pageType","level")
+                        putInt("libId", libId)
+                        putIntegerArrayList("levels",levels as ArrayList<Int>)
+                    })
+        }
     }
 
     override fun createObserver() {
@@ -74,11 +81,23 @@ class SelectLevelFragment : BaseFragment<SelectLevelViewModel, FragmentSelectLev
 
     inner class ProxyClick {
         fun toSelectWord() {
+            val levels:ArrayList<Int>?=ArrayList()
+            mAdapter.data.let {
+                for (index in 0 until it.size){
+                    if (it[index].isSelect){
+                        levels?.add(it[index].level)
+                    }
+                }
+            }
+            if (levels?.size==0){
+                showToast("请勾选关卡后再试")
+                return
+            }
             nav().navigateAction(
                 R.id.action_selectLevelFragment_to_selectWordFragment,
                 Bundle().apply {
                     putInt("libId", libId)
-                    putParcelableArrayList("data",mAdapter.data as ArrayList<LevelItem>)
+                    putIntegerArrayList("levels",levels)
                 })
         }
     }

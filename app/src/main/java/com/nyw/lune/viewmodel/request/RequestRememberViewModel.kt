@@ -100,7 +100,7 @@ class RequestRememberViewModel : BaseViewModel() {
     }
 
 
-    fun getLevelWords(libId: Int, levels: MutableList<Int>) {
+    fun getLevelWords(libId: Int, levels: ArrayList<Int>?) {
         val str: String = GsonUtils.toJson(
                 GetWordsReq(libId,levels,wordIds = mutableListOf()), GetWordsReq::class.java
         )

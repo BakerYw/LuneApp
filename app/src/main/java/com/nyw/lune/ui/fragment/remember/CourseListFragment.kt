@@ -73,6 +73,10 @@ class CourseListFragment : BaseFragment<CourseListViewModel, FragmentCourseListB
             //触发刷新监听时请求数据
             requestViewModel.getTagClassDataList(true, mViewModel.tagId.get())
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
         requestViewModel.getTag()
     }
 

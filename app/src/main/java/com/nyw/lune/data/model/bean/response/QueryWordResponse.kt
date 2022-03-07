@@ -8,10 +8,10 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class QueryWordResponse(
     var cnItems: String,
-    var explains: Array<String>,
+    var explains: MutableList<String>,
     var phonetic: String,
     var speakUrl: String,
-    var translation: Array<String>,
+    var translation:MutableList<String>,
     var ukPhonetic: String,
     var ukSpeech: String,
     var usPhonetic: String,

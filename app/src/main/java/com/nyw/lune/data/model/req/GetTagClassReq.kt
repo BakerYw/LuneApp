@@ -6,5 +6,5 @@ data class GetTagClassReq(
         var libName: String?,
         var pageSize: Int,
         var tagId: Int,
-        var tagIds: ArrayList<Int>?
+        var tagIds: MutableList<Int>?
 )

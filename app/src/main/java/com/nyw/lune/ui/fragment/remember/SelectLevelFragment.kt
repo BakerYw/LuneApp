@@ -1,6 +1,8 @@
 package com.nyw.lune.ui.fragment.remember
 
 import android.os.Bundle
+import android.os.Parcelable
+import android.util.Log
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,6 +21,7 @@ import com.nyw.lune.databinding.FragmentSelectLevelBinding
 import com.nyw.lune.ui.adapter.SelectLevelAdapter
 import com.nyw.lune.viewmodel.request.RequestRememberViewModel
 import com.nyw.lune.viewmodel.state.SelectLevelViewModel
+import com.tencent.bugly.proguard.m
 import kotlinx.android.synthetic.main.fragment_select_level.*
 import kotlinx.android.synthetic.main.include_toolbar.*
 import java.util.*
@@ -45,7 +48,7 @@ class SelectLevelFragment : BaseFragment<SelectLevelViewModel, FragmentSelectLev
         }
         requestViewModel.getLevelDesc(libId)
         level_recycle.init(LinearLayoutManager(context), mAdapter).let {
-            it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(10f)))
+            it.addItemDecoration(SpaceItemDecoration(0, ConvertUtils.dp2px(10f),false))
         }
     }
 
@@ -70,11 +73,12 @@ class SelectLevelFragment : BaseFragment<SelectLevelViewModel, FragmentSelectLev
     }
 
     inner class ProxyClick {
-        fun toSelectWord(){
+        fun toSelectWord() {
             nav().navigateAction(
                 R.id.action_selectLevelFragment_to_selectWordFragment,
                 Bundle().apply {
                     putInt("libId", libId)
+                    putParcelableArrayList("data",mAdapter.data as ArrayList<LevelItem>)
                 })
         }
     }

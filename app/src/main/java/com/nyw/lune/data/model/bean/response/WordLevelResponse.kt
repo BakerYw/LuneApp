@@ -6,10 +6,8 @@ import kotlinx.android.parcel.Parcelize
 
 @SuppressLint("ParcelCreator")
 @Parcelize
-data class CourseLevelResponse(
-    var hasStudyCount: Int,
-    var lastStudyTime: String,
-    var studyLevels:MutableList<Int>,
-    var totalLevel: Int,
-    var wordCount: Int
-    ) : Parcelable
+data class WordLevelResponse(
+        var level: Int,
+        var words:MutableList<WordResponse>,
+        var isSelect:Boolean
+) : Parcelable

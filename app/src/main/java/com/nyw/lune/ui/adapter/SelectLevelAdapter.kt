@@ -3,6 +3,7 @@ package com.nyw.lune.ui.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import com.google.android.material.checkbox.MaterialCheckBox
 import com.nyw.lune.R
 import com.nyw.lune.data.model.bean.LevelItem
 
@@ -13,8 +14,12 @@ import com.nyw.lune.data.model.bean.LevelItem
  * @desc:
  */
 class SelectLevelAdapter(data: ArrayList<LevelItem>) :
-    BaseQuickAdapter<LevelItem, BaseViewHolder>(R.layout.item_level_layout, data) {
+        BaseQuickAdapter<LevelItem, BaseViewHolder>(R.layout.item_level_layout, data) {
     override fun convert(holder: BaseViewHolder, item: LevelItem) {
-        holder.setText(R.id.title,"第${item.text}关")
+        holder.setText(R.id.title, "第${item.text}关")
+        val checkBox = holder.getViewOrNull<MaterialCheckBox>(R.id.checkbox)
+        checkBox?.setOnCheckedChangeListener { buttonView, isChecked ->
+            item.isSelect = isChecked
+        }
     }
 }

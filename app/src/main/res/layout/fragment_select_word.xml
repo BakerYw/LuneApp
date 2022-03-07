@@ -21,7 +21,10 @@
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_above="@+id/bottom" />
+                android:layout_above="@+id/bottom"
+                android:overScrollMode="never"
+                android:layout_marginLeft="@dimen/dp_14"
+                android:layout_marginRight="@dimen/dp_14"/>
 
 
             <LinearLayout

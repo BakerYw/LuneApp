@@ -131,7 +131,6 @@ interface ApiService {
             @Query("tagType") tagType: Int
     ): ApiResponse<ArrayList<TagResponse>>
 
-
     /**
      * 课程分页查询
      */
@@ -139,7 +138,6 @@ interface ApiService {
     suspend fun getTagClassList(
             @Body libDto: RequestBody
     ): ApiResponse<ApiPagerResponse<ArrayList<TagClassResponse>>>
-
 
     @GET("/api/pad/lib/detail")
     suspend fun getCourseDesc(
@@ -150,6 +148,37 @@ interface ApiService {
     suspend fun getLevelDesc(
         @Query("libId") libId: Int
     ): ApiResponse<CourseLevelResponse>
+
+
+    /**
+     * 选择关卡，获取关卡内单词
+     */
+   @POST("/api/pad/lib/level/choose/words")
+    suspend fun getLevelWords(
+            @Body libLevelDto: RequestBody
+    ): ApiResponse<MutableList<WordLevelResponse>>
+
+
+    /**
+     * 勾选单词后跳入下一页
+     */
+    @POST("/api/pad/lib/level/words/study")
+    suspend fun getLevelWordsWithWorkId(
+            @Body libLevelDto: RequestBody
+    ): ApiResponse<MutableList<WordLevelResponse>>
+
+
+    /**
+     * 查看单词的详细信息
+     */
+    @GET("/api/pad/lib/word/detail")
+    suspend fun getWordDetail(
+            @Query("wordId") wordId: Int
+    ): ApiResponse<WordResponse>
+
+
+
+
 
 
 
@@ -179,6 +208,9 @@ interface ApiService {
     suspend fun getMaterialDetail(
         @Query("materialId") materialId: Int
     ): ApiResponse<CateMaterialResponse>
+
+
+
 
     /***************************************抗遗忘**********************************************/
 
